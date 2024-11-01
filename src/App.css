@@ -7,3 +7,14 @@ html , body{
   height: 100%;
   width: 100%;
 }
+nav ul li a {
+  display: flex;
+  padding: 14px 40px;
+  align-items: center;
+  gap: 10px;
+  font-weight: normal;
+  transition: 0.15s ease-out;
+  &:hover {
+    background-color: #562D9C;
+  }
+}
