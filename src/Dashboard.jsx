@@ -4,8 +4,8 @@ import HeaderDiv from './HeaderDiv'
 export default function Dashboard() {
   return (
     <div className='w-full h-full'>
-      <HeaderDiv />
-      qwewqe
+      <HeaderDiv value='Dashboard' />
+      
     </div>
   )
 }
