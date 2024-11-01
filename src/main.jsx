@@ -5,6 +5,8 @@ import App from './App.jsx'
 import Dashboard from './Dashboard.jsx'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Properties from './Properties.jsx'
+import NewProperty from './NewProperty.jsx'
+import AllProperties from './AllProperties.jsx'
 
 const router = createBrowserRouter([
   {
@@ -16,9 +18,19 @@ const router = createBrowserRouter([
         element: <Dashboard />
       },
       {
-        path: 'all-properties',
-        element: <Properties />
-      }
+        path: 'properties',
+        element: <Properties />,
+        children: [
+          {
+            index: true,
+            element: <AllProperties />
+          },
+          {
+            path: 'add-new-property',
+            element: <NewProperty />
+          }
+        ]
+      },
     ]
   }
 ])

@@ -22,7 +22,7 @@ export default function Navbar() {
                 </li>
                 
                 <li>
-                    <Link to='all-properties'>
+                    <Link to='properties'>
                         <PiHouse className='text-white font-thin text-[25px]' />
                         <span className='text-white text-[21px]'>All Properties</span>
                     </Link>
