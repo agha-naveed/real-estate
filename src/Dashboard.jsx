@@ -1,7 +1,10 @@
 import React from 'react'
+import HeaderDiv from './HeaderDiv'
 
 export default function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <div className='w-full h-full'>
+      <HeaderDiv />
+    </div>
   )
 }

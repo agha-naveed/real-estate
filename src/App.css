@@ -15,6 +15,6 @@ nav ul li a {
   font-weight: normal;
   transition: 0.15s ease-out;
   &:hover {
-    background-color: #562D9C;
+    background-color: #9575CD;
   }
 }

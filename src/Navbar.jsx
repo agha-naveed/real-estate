@@ -9,13 +9,13 @@ import Dashboard from './Dashboard'
 
 export default function Navbar() {
     return (
-        <nav className='navbar w-[300px] h-screen py-5 bg-primary-clr'>
+        <nav className='navbar min-w-[300px] min-h-screen py-5 bg-primary-clr'>
             <div className='justify-self-center'>
                 <Link to={ Dashboard }><img src={logo} alt="Logo" className='w-[100px]' /></Link>
             </div>
 
-            <ul className='py-5'>
-                <li className=''>
+            <ul className='py-5 grid gap-1'>
+                <li>
                     <Link to={ Dashboard }>
                         <MdOutlineSpaceDashboard className='text-white font-thin text-[25px]' />
                         <span className='text-white text-[21px]'>Dashboard</span>
