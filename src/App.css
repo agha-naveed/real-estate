@@ -43,6 +43,9 @@ select {
 /* -------- Add New Property Ended ---------- */
 
 
+
+
+/* Global Css */
 .submit-btn {
   background-color: #673AB7;
   cursor: pointer;
@@ -57,4 +60,15 @@ select {
     color: #673AB7;
     border: 1px solid #673AB7;
   }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

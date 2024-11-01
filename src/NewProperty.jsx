@@ -4,7 +4,7 @@ import { Form } from 'react-router-dom'
 export default function NewProperty() {
   return (
     <div>
-      <Form method='POST' className='add-property-form lg:w-[55%] py-10 px-8'>
+      <Form method='POST' className='add-property-form xl:w-[600px] lg:w-[70%] w-full py-10 px-8'>
 
       
         <div className='flex gap-5'>
@@ -56,7 +56,7 @@ export default function NewProperty() {
           
           <div>
             <label htmlFor="p-zip">Zip Code</label>
-            <input type="text" required name='property_zip' id='p-zip' />
+            <input type="number" required name='property_zip' id='p-zip' />
           </div>
         </div>
 
