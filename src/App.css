@@ -18,3 +18,43 @@ nav ul li a {
     background-color: #9575CD;
   }
 }
+
+/* -------- Add New Property ---------- */
+
+.add-property-form div {
+  width: 100%;
+  margin: 3px 0;
+}
+.add-property-form label {
+  margin: 2px 0;
+  display: flex;
+  width: fit-content;
+}
+select {
+  cursor: pointer;
+}
+.add-property-form input, .add-property-form select, .add-property-form textarea {
+  width: 100%;
+  padding: 5px   10px;
+  height: 35px;
+  border: 1px solid rgba(80, 80, 80, 0.527);
+  border-radius: 8px;
+}
+/* -------- Add New Property Ended ---------- */
+
+
+.submit-btn {
+  background-color: #673AB7;
+  cursor: pointer;
+  color: white;
+  height: 40px !important;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  transition: 0.2s ease-out;
+  &:hover {
+    background-color: white;
+    color: #673AB7;
+    border: 1px solid #673AB7;
+  }
+}
