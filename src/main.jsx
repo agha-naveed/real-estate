@@ -4,6 +4,7 @@ import './index.css'
 import App from './App.jsx'
 import Dashboard from './Dashboard.jsx'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Properties from './Properties.jsx'
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Dashboard />
+      },
+      {
+        path: 'all-properties',
+        element: <Properties />
       }
     ]
   }
