@@ -18,10 +18,31 @@ Router.get("/", (req, resp) => {
     resp.send(userData)
 })
 
-Router.get("/api/user", (req, res) => {
-    sqlDBConnect.query("select * from seller", (err, rows) => {
+Router.get("/api/add-property", (req, res) => {
+    sqlDBConnect.query("select * from property", (err, rows) => {
         !err? res.send(rows) : console.log(err);
     })
 })
+
+Router.post("/api/add-property", (req, res) => {
+    const sellerId = req.body.seller_id;
+    const propertyType = req.body.property_type;
+    const propertySize = req.body.property_size;
+    const propertyPrice = req.body.property_price;
+    const propertyCity = req.body.property_city;
+    const propertyState = req.body.property_state;
+    const propertyZip = req.body.property_zip;
+    const propertyLocation = req.body.property_location;
+    const today = new Date();
+
+
+    let sql = `INSERT INTO property(property_type, seller_id, property_size, property_city, property_state, property_zip, property_price, property_location, entry_date) VALUES ("${propertyType}", "${sellerId}", "${propertySize}", "${propertyCity}", "${propertyState}", "${propertyZip}", "${propertyPrice}", "${propertyLocation}", "${new Date().toISOString().split('T')[0]}")`
+
+    sqlDBConnect.query(sql, (err, result) => !err ? res.status(200).json("New Property has been Inserted") 
+    : console.log(err) );
+
+})
+
+
 
 module.exports = Router;

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Form } from 'react-router-dom'
+import { Form, useNavigate } from 'react-router-dom'
 
 
 export default function NewProperty() {
@@ -10,17 +10,31 @@ export default function NewProperty() {
 
   const {register, handleSubmit } = useForm()
 
+  const navigate = useNavigate()
+
   const onSubmit = (data) => {
     console.log(data);
 
-    const res = axios.post("localhost:7000/api/add-property", data)
-    .then(response => setMessage(response.data))
+    const res = axios.post("http://localhost:7000/api/add-property", data)
+    .then(response => setMessage(response.data));
+
+
+    if(!message) {
+      setMessage(res.data);
+      setTimeout(() => {
+        navigate('/');
+      }, 2000)
+    }
+    else {
+      setMessage("Error Occured!");
+    }
   }
+
 
   return (
     <div>
       <Form onSubmit={handleSubmit(onSubmit)} method='POST' className='add-property-form xl:w-[600px] lg:w-[70%] w-full py-10 px-8'>
-
+        <p>{message}</p>
       
         <div className='flex gap-5'>
           <div title='Write a SellerID that should be Specified!' className='grid'>
@@ -66,7 +80,7 @@ export default function NewProperty() {
         
         <div className='flex gap-5'>
           <div>
-            <label htmlFor="p-state">State</label>
+            <label htmlFor="p-state">Province/State</label>
             <input type="text" required {...register("property_state")} id='p-state' />
           </div>
           
