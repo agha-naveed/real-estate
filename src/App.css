@@ -42,6 +42,19 @@ select {
 }
 /* -------- Add New Property Ended ---------- */
 
+/* -------- Property Detail ---------- */
+.property-table td, .property-table th {
+  width: fit-content;
+  padding: 10px 15px;
+  font-size: 20px;
+  border: 1px solid black;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* -------- Property Detail Ended ---------- */
+
+
 
 
 
@@ -71,4 +84,24 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+
+/* scroll bar */
+::-webkit-scrollbar {
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  background: #8e59e98c;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8e59e9d5;
 }

@@ -4,7 +4,7 @@ import HeaderDiv from './HeaderDiv'
 
 export default function Properties() {
   return (
-    <div className='w-full h-full'>
+    <div className='w-full h-full overflow-hidden'>
         <HeaderDiv value='Properties' />
         <Outlet />
     </div>
