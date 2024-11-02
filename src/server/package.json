@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "backend",
   "main": "index.js",
-  "author": "",
+  "author": {
+    "name": "Agha Naveed",
+    "email": "naveedabs31@gmail.com",
+    "github": "https://github.com/agha-naveed"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
