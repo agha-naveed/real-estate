@@ -22,7 +22,9 @@ Router.get("/api/add-property", (req, res) => {
     sqlDBConnect.query("select * from property", (err, rows) => {
         !err? res.send(rows) : console.log(err);
     })
+    
 })
+
 
 Router.post("/api/add-property", (req, res) => {
     const sellerId = req.body.seller_id;
@@ -40,9 +42,22 @@ Router.post("/api/add-property", (req, res) => {
 
     sqlDBConnect.query(sql, (err, result) => !err ? res.status(200).json("New Property has been Inserted") 
     : console.log(err) );
-
 })
 
+Router.get("/api/property-details", (req, res) => {
+    let sql = `
+        SELECT property.*, s.seller_name FROM property 
+        INNER JOIN seller AS s ON property.seller_id = s.seller_id
+    `;
+
+    sqlDBConnect.query(sql, (err, rows) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send({ error: 'Database query failed' });
+        }
+        res.send(rows);
+    });
+});
 
 
 module.exports = Router;

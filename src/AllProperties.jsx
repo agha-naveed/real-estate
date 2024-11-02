@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useState, useInsertionEffect, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { FiPlus } from "react-icons/fi";
+import axios from 'axios';
 
 export default function AllProperties() {
+
+  const [userData, setUserData] = useState([]);
+
+  
+useInsertionEffect(() => {
+  const propertyData = async () => {
+    try {
+      const response = await axios.get("http://localhost:7000/api/property-details");
+      setUserData(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  propertyData();
+  console.log(userData);
+}, []);
+
+
   return (
     <section className='overflow-hidden'>
         <div className="add-property-btn w-full p-5 flex justify-end">
@@ -19,6 +38,7 @@ export default function AllProperties() {
               <tr>
                 <th>Property ID</th>
                 <th>Seller ID</th>
+                <th>Seller Name</th>
                 <th>Type</th>
                 <th>Size</th>
                 <th>City</th>
@@ -31,19 +51,27 @@ export default function AllProperties() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>Commercial</td>
-                <td>123</td>
-                <td>Lahore</td>
-                <td>punjab</td>
-                <td>51000</td>
-                <td>5200002</td>
-                <td>shop 15 ibrahim market near clifton pull hargisa skardu</td>
-                <td>available</td>
-                <td>2024-2-11</td>
-              </tr>
+              {
+                userData.map((u_data, i) => {
+                  return (
+                    <tr key={`property_index_${i}`}>
+                      <td>{u_data.property_id}</td>
+                      <td>{u_data.seller_id}</td>
+                      <td>{u_data.seller_name}</td>
+                      <td>{u_data.property_type}</td>
+                      <td>{u_data.property_size}</td>
+                      <td>{u_data.property_city}</td>
+                      <td>{u_data.property_state}</td>
+                      <td>{u_data.property_zip}</td>
+                      <td>{u_data.property_price}</td>
+                      <td>{u_data.property_location}</td>
+                      <td>{u_data.property_status}</td>
+                      <td>{u_data.entry_date}</td>
+                    </tr>
+                    )
+
+                })
+              }
             </tbody>
           </table>
         </div>
