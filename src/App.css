@@ -9,7 +9,6 @@ html , body{
 }
 nav ul li a {
   display: flex;
-  padding: 14px 40px;
   align-items: center;
   gap: 10px;
   font-weight: normal;

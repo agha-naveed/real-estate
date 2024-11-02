@@ -32,7 +32,7 @@ useInsertionEffect(() => {
         </div>
 
 
-        <div className='w-full h-full overflow-x-scroll'>
+        <div className='w-full h-full overflow-x-scroll py-2 px-5'>
           <table className='property-table overflow-x-scroll'>
             <thead className='font-semibold'>
               <tr>
