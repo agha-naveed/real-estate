@@ -13,7 +13,7 @@ export default function NewProperty() {
   const onSubmit = (data) => {
     console.log(data);
 
-    const res = axios.post("", data)
+    const res = axios.post("localhost:7000/api/add-property", data)
     .then(response => setMessage(response.data))
   }
 
@@ -32,8 +32,8 @@ export default function NewProperty() {
             <label htmlFor="p-type">Property Type</label>
             <select {...register("property_type")} required id="p-type">
               <option value="" defaultValue={true}>-- select --</option>
-              <option value="residential">Residential</option>
               <option value="commercial">Commercial</option>
+              <option value="residential">Residential</option>
               <option value="land">Land</option>
               <option value="mixuse">Mix-Use</option>
             </select>

@@ -10,6 +10,7 @@ app.use(cors());
 
 app.use("/", RouterPath);
 app.use("/api/user", RouterPath);
+app.use("/api/add-property", RouterPath)
 
 
 app.listen(port, () => console.log("Server Running on port 7000..."));

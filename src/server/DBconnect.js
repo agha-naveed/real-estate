@@ -4,7 +4,7 @@ const sqlconnect = sql.createConnection({
         host: "localhost",
         user: "root",
         password: "",
-        database: "nodeDB",
+        database: "real_estate",
         multipleStatements: true
     });
 
