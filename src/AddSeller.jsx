@@ -48,7 +48,7 @@ export default function AddSeller() {
         <textarea  id='s-address' {...register("seller_address")} className='!h-32' required ></textarea>
       </div>
 
-      <input type="submit" className='submit-btn' name='add-property-submit-btn' />
+      <input type="submit" className='submit-btn' name='add-seller-submit-btn' />
 
     </Form>
   )

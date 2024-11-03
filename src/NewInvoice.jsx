@@ -43,10 +43,10 @@ export default function NewInvoice() {
             <input type="number" id='buy-id' {...register("buyer_id")} required />
             </div>
     
-            <div>
+            {/* <div>
             <label htmlFor="sell-id">Seller ID</label>
             <input type="number" id='sell-id' {...register("seller_id")} required />
-            </div>
+            </div> */}
         </div>
 
         <div className='md:flex grid md:gap-5'>
@@ -67,7 +67,7 @@ export default function NewInvoice() {
         </div>
         
   
-        <input type="submit" className='submit-btn mt-2' name='add-property-submit-btn' />
+        <input type="submit" className='submit-btn mt-2' name='add-invoice-submit-btn' />
   
       </Form>
     )

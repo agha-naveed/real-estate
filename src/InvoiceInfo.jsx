@@ -59,9 +59,9 @@ export default function InvoiceInfo() {
                       <td>{u_data.buyer_id}</td>
                       <td>{u_data.seller_id}</td>
                       <td>{u_data.invoice_date}</td>
-                      <td>{u_data.invoice_recv_amount}</td>
-                      <td>{u_data.invoice_pay_amount}</td>
-                      <td>{u_data.invoice_commission_amount}</td>
+                      <td>{u_data.invoice_recievable_amount}</td>
+                      <td>{u_data.invoice_payable_amount}</td>
+                      <td>{u_data.commission_amount}</td>
                     </tr>
                     )
 
