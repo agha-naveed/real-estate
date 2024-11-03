@@ -3,7 +3,7 @@ import './App.css'
 import logo from './assets/img/logo.png'
 import { MdOutlineSpaceDashboard, MdPermIdentity  } from "react-icons/md";
 import { PiHouse } from "react-icons/pi";
-import { TbReportAnalytics } from "react-icons/tb";
+import { TbReportAnalytics, TbFileInvoice } from "react-icons/tb";
 import { Link } from 'react-router-dom'
 
 export default function Navbar() {
@@ -45,7 +45,7 @@ export default function Navbar() {
                 
                 <li>
                     <Link to='invoice' className='md:py-[14px] md:px-[40px] p-2 md:justify-start justify-center'>
-                        <TbReportAnalytics  className='text-white font-thin text-[25px]' />
+                        <TbFileInvoice className='text-white font-thin text-[25px]' />
                         <span className='text-white text-[21px] md:block hidden'>Invoice</span>
                     </Link>
                 </li>
@@ -58,6 +58,8 @@ export default function Navbar() {
                 </li>
 
             </ul>
+
+            
                 
         </nav>
     )

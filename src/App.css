@@ -50,6 +50,9 @@ select {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.property-table thead {
+  background-color: rgba(191, 142, 255, 0.158);
+}
 .property-table tr {
   transition: 0.18s ease-out;
 }

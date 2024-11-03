@@ -40,7 +40,7 @@ Router.post("/api/add-property", (req, res) => {
     const propertyLocation = req.body.property_location;
 
 
-    let sql = `INSERT INTO property(property_type, seller_id, property_size, property_city, property_state, property_zip, property_price, property_location, entry_date) VALUES ("${propertyType}", "${sellerId}", "${propertySize}", "${propertyCity}", "${propertyState}", "${propertyZip}", "${propertyPrice}", "${propertyLocation}", "${(new Date()).toISOString().split('T')[0]}")`
+    let sql = `INSERT INTO property(property_type, property_size, property_city, property_state, property_zip, property_price, property_location, entry_date) VALUES ("${propertyType}", "${propertySize}", "${propertyCity}", "${propertyState}", "${propertyZip}", "${propertyPrice}", "${propertyLocation}", "${(new Date()).toLocaleDateString('en-CA')}")`
 
     sqlDBConnect.query(sql, (err, result) => !err ? res.status(200).json("New Property has been Inserted") 
     : console.log(err) );
@@ -169,16 +169,17 @@ Router.post("/api/create-new-invoice", (req, res) => {
 
 
      
-    let sql = `INSERT INTO invoice(property_id, buyer_id, seller_id, invoice_date, invoice_recievable_amount, invoice_payable_amount, commission_amount) VALUES ("${propertyId}", "${buyerId}", "${sellerId}", "${(new Date()).toISOString().split('T')[0]}", "${inRecvAmount}", "${inPayAmount}", "${inCommission}")`;
+    let sql = `INSERT INTO invoice(property_id, buyer_id, seller_id, invoice_date, invoice_recievable_amount, invoice_payable_amount, commission_amount) VALUES ("${propertyId}", "${buyerId}", "${sellerId}", "${(new Date()).toLocaleDateString('en-CA')}", "${inRecvAmount}", "${inPayAmount}", "${inCommission}")`;
 
     sqlDBConnect.query(sql, (err, result) => !err ? res.status(200).json("New Property has been Inserted") 
     : console.log(err) );
 })
 
 Router.get("/api/invoice-details", (req, res) => {
-    // let sql = `SELECT inv.*, p.seller_id FROM invoice AS inv INNER JOIN property AS p ON inv.property_id = p.property_id`;
+    
+    let sql = `SELECT inv.*, p.seller_id FROM invoice AS inv INNER JOIN property AS p ON inv.property_id = p.property_id`;
 
-    let sql = `SELECT * FROM invoice`;
+    // let sql = `SELECT * FROM invoice`;
 
     sqlDBConnect.query(sql, (err, rows) => {
         if (err) {
