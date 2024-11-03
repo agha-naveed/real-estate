@@ -12,10 +12,10 @@ export default function NewInvoice() {
     const navigate = useNavigate()
   
     const onSubmit = (data) => {
-  
+      console.log(data)
       const res = axios.post("http://localhost:7000/api/create-new-invoice", data)
-      .then(response => setMessage(response.data));
-  
+      .then(response => setMessage(response.data)).catch(err => console.warn(err))
+      
   
       if(!message) {
         setMessage(res.data);
@@ -43,10 +43,10 @@ export default function NewInvoice() {
             <input type="number" id='buy-id' {...register("buyer_id")} required />
             </div>
     
-            {/* <div>
+            <div>
             <label htmlFor="sell-id">Seller ID</label>
             <input type="number" id='sell-id' {...register("seller_id")} required />
-            </div> */}
+            </div>
         </div>
 
         <div className='md:flex grid md:gap-5'>

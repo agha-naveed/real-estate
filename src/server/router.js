@@ -160,7 +160,7 @@ Router.get("/api/create-new-invoice", (req, res) => {
 
 Router.post("/api/create-new-invoice", (req, res) => {
     let propertyId = req.body.property_id;
-    // let sellerId = req.body.seller_id;
+    let sellerId = req.body.seller_id;
     let buyerId = req.body.buyer_id;
     let inRecvAmount = req.body.invoice_recievable_amount;
     let inPayAmount = req.body.invoice_payable_amount;
@@ -169,15 +169,16 @@ Router.post("/api/create-new-invoice", (req, res) => {
 
 
      
-    let sql = `INSERT INTO invoice(property_id, buyer_id, invoice_date, invoice_recievable_amount, invoice_payable_amount, commission_amount) 
-    VALUES ("${propertyId}", "${buyerId}", "${(new Date()).toISOString().split('T')[0]}", "${inRecvAmount}", "${inPayAmount}", "${inCommission}")`;
+    let sql = `INSERT INTO invoice(property_id, buyer_id, seller_id, invoice_date, invoice_recievable_amount, invoice_payable_amount, commission_amount) VALUES ("${propertyId}", "${buyerId}", "${sellerId}", "${(new Date()).toISOString().split('T')[0]}", "${inRecvAmount}", "${inPayAmount}", "${inCommission}")`;
 
     sqlDBConnect.query(sql, (err, result) => !err ? res.status(200).json("New Property has been Inserted") 
     : console.log(err) );
 })
 
 Router.get("/api/invoice-details", (req, res) => {
-    let sql = `SELECT inv.*, p.seller_id FROM invoice AS inv INNER JOIN property AS p ON inv.property_id = p.property_id`;
+    // let sql = `SELECT inv.*, p.seller_id FROM invoice AS inv INNER JOIN property AS p ON inv.property_id = p.property_id`;
+
+    let sql = `SELECT * FROM invoice`;
 
     sqlDBConnect.query(sql, (err, rows) => {
         if (err) {
