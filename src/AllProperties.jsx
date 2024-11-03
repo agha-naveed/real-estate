@@ -1,4 +1,4 @@
-import React, { useState, useInsertionEffect, useEffect } from 'react'
+import React, { useState, useInsertionEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { FiPlus } from "react-icons/fi";
 import axios from 'axios';
@@ -32,8 +32,8 @@ useInsertionEffect(() => {
         </div>
 
 
-        <div className='w-full h-full overflow-x-scroll py-2 px-5'>
-          <table className='property-table overflow-x-scroll'>
+        <div className='w-[98%] h-full overflow-x-auto py-2 px-5'>
+          <table className='property-table'>
             <thead className='font-semibold'>
               <tr>
                 <th>Property ID</th>

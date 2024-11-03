@@ -10,8 +10,17 @@ app.use(cors());
 
 app.use("/", RouterPath);
 app.use("/api/user", RouterPath);
+// Property
 app.use("/api/add-property", RouterPath);
 app.use("/api/property-details", RouterPath);
+
+// Buyer
+app.use("/api/add-new-buyer", RouterPath);
+app.use("/api/buyer-details", RouterPath);
+
+// Seller
+app.use("/api/add-new-seller", RouterPath);
+app.use("/api/seller-details", RouterPath);
 
 
 app.listen(port, () => console.log("Server Running on port 7000..."));
