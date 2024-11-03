@@ -3,10 +3,8 @@ import { Link } from 'react-router-dom'
 import { FiPlus } from "react-icons/fi";
 import axios from 'axios';
 
-export default function SellerInfo() {
-
-
-
+export default function InvoiceInfo() {
+ 
   
   const [userData, setUserData] = useState([]);
 
@@ -14,7 +12,7 @@ export default function SellerInfo() {
   useInsertionEffect(() => {
     const propertyData = async () => {
       try {
-        const response = await axios.get("http://localhost:7000/api/seller-details");
+        const response = await axios.get("http://localhost:7000/api/invoice-details");
         setUserData(response.data);
       } catch (err) {
         console.log(err);
@@ -31,9 +29,9 @@ export default function SellerInfo() {
   return (
     <div className='w-full h-full'>
       <div className="add-btn w-full p-5 flex justify-end">
-        <Link to='add-new-seller' className='flex bg-primary-clr w-fit py-[6px] px-[24px] text-white rounded-[22px] gap-[6px] items-center transition-all hover:bg-dark-primary-clr'>
+        <Link to='create-new-invoice' className='flex bg-primary-clr w-fit py-[6px] px-[24px] text-white rounded-[22px] gap-[6px] items-center transition-all hover:bg-dark-primary-clr'>
             <FiPlus className='text-[30px]' />
-            <span className='text-[20px]'>Add New Seller</span>
+            <span className='text-[20px]'>Create New Invoice</span>
         </Link>
       </div>
 
@@ -41,10 +39,14 @@ export default function SellerInfo() {
           <table className='property-table'>
             <thead className='font-semibold'>
               <tr>
+                <th>Invoice ID</th>
+                <th>Property ID</th>
+                <th>Buyer ID</th>
                 <th>Seller ID</th>
-                <th>Name</th>
-                <th>Cell#</th>
-                <th>Address</th>
+                <th>Date</th>
+                <th>Receivable Amount</th>
+                <th>Payable Amount</th>
+                <th>Commission Amount</th>
               </tr>
             </thead>
             <tbody>
@@ -52,10 +54,14 @@ export default function SellerInfo() {
                 userData.map((u_data, i) => {
                   return (
                     <tr className='hover:!bg-purple-100' key={`seller_index_${i}`}>
+                      <td>{u_data.invoice_id}</td>
+                      <td>{u_data.property_id}</td>
+                      <td>{u_data.buyer_id}</td>
                       <td>{u_data.seller_id}</td>
-                      <td>{u_data.seller_name}</td>
-                      <td>{u_data.seller_cell}</td>
-                      <td>{u_data.seller_address}</td>
+                      <td>{u_data.invoice_date}</td>
+                      <td>{u_data.invoice_recv_amount}</td>
+                      <td>{u_data.invoice_pay_amount}</td>
+                      <td>{u_data.invoice_commission_amount}</td>
                     </tr>
                     )
 

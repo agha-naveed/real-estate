@@ -22,5 +22,9 @@ app.use("/api/buyer-details", RouterPath);
 app.use("/api/add-new-seller", RouterPath);
 app.use("/api/seller-details", RouterPath);
 
+// Invoice
+app.use("/api/create-new-invoice", RouterPath);
+app.use("/api/invoice-details", RouterPath);
+
 
 app.listen(port, () => console.log("Server Running on port 7000..."));

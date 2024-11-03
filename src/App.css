@@ -45,11 +45,13 @@ select {
 .property-table td, .property-table th {
   width: fit-content;
   padding: 10px 15px;
-  font-size: 20px;
   border: 1px solid black;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.property-table tr {
+  transition: 0.18s ease-out;
 }
 /* -------- Property Detail Ended ---------- */
 

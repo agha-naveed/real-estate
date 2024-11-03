@@ -51,7 +51,7 @@ export default function BuyerInfo() {
               {
                 userData.map((u_data, i) => {
                   return (
-                    <tr key={`buyer_index_${i}`}>
+                    <tr className='hover:!bg-purple-100' key={`buyer_index_${i}`}>
                       <td>{u_data.buyer_id}</td>
                       <td>{u_data.buyer_name}</td>
                       <td>{u_data.buyer_cell}</td>

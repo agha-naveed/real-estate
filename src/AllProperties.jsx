@@ -54,7 +54,7 @@ useInsertionEffect(() => {
               {
                 userData.map((u_data, i) => {
                   return (
-                    <tr key={`property_index_${i}`}>
+                    <tr className='hover:!bg-purple-100' key={`property_index_${i}`}>
                       <td>{u_data.property_id}</td>
                       <td>{u_data.seller_id}</td>
                       <td>{u_data.seller_name}</td>

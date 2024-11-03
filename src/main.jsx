@@ -13,6 +13,9 @@ import BuyerInfo from './BuyerInfo.jsx'
 import AddBuyer from './AddBuyer.jsx'
 import SellerInfo from './SellerInfo.jsx'
 import AddSeller from './AddSeller.jsx'
+import Invoice from './Invoice.jsx'
+import InvoiceInfo from './InvoiceInfo.jsx'
+import NewInvoice from './NewInvoice.jsx'
 
 const router = createBrowserRouter([
   {
@@ -62,6 +65,20 @@ const router = createBrowserRouter([
           {
             path: 'add-new-seller',
             element: <AddSeller />
+          }
+        ]
+      },
+      {
+        path: 'invoice',
+        element: <Invoice />,
+        children: [
+          {
+            index: true,
+            element: <InvoiceInfo />
+          },
+          {
+            path: 'create-new-invoice',
+            element: <NewInvoice />
           }
         ]
       }

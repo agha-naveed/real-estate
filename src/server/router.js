@@ -30,7 +30,7 @@ Router.get("/api/add-property", (req, res) => {
 
 
 Router.post("/api/add-property", (req, res) => {
-    const sellerId = req.body.seller_id;
+    let sellerId = req.body.seller_id;
     const propertyType = req.body.property_type;
     const propertySize = req.body.property_size;
     const propertyPrice = req.body.property_price;
@@ -38,10 +38,9 @@ Router.post("/api/add-property", (req, res) => {
     const propertyState = req.body.property_state;
     const propertyZip = req.body.property_zip;
     const propertyLocation = req.body.property_location;
-    const today = new Date();
 
 
-    let sql = `INSERT INTO property(property_type, seller_id, property_size, property_city, property_state, property_zip, property_price, property_location, entry_date) VALUES ("${propertyType}", "${sellerId}", "${propertySize}", "${propertyCity}", "${propertyState}", "${propertyZip}", "${propertyPrice}", "${propertyLocation}", "${new Date().toISOString().split('T')[0]}")`
+    let sql = `INSERT INTO property(property_type, seller_id, property_size, property_city, property_state, property_zip, property_price, property_location, entry_date) VALUES ("${propertyType}", "${sellerId}", "${propertySize}", "${propertyCity}", "${propertyState}", "${propertyZip}", "${propertyPrice}", "${propertyLocation}", "${(new Date()).toISOString().split('T')[0]}")`
 
     sqlDBConnect.query(sql, (err, result) => !err ? res.status(200).json("New Property has been Inserted") 
     : console.log(err) );
@@ -144,6 +143,53 @@ Router.get("/api/buyer-details", (req, res) => {
 });
 
 // ==============   === Buyer Ended Here ===   ================
+
+// ---------------------------------------------------------
+
+// ==============   === Invoice Here ===   ================
+
+
+Router.get("/api/create-new-invoice", (req, res) => {
+    sqlDBConnect.query("select * from invoice", (err, rows) => {
+        !err? res.send(rows) : console.log(err);
+    })
+    
+})
+
+
+Router.post("/api/create-new-invoice", (req, res) => {
+    let propertyId = req.body.property_id;
+    let sellerId = req.body.seller_id;
+    let buyerId = req.body.buyer_id;
+    let inRecvAmount = req.body.invoice_recievable_amount;
+    let inPayAmount = req.body.invoice_payable_amount;
+    let inCommission = req.body.commission_amount
+
+
+
+     
+    let sql = `INSERT INTO invoice(property_id, buyer_id, seller_id, invoice_date, invoice_recievable_amount, invoice_payable_amount, commission_amount) 
+    VALUES ("${propertyId}", "${buyerId}", "${sellerId}", "${(new Date()).toISOString().split('T')[0]}", "${inRecvAmount}", "${inPayAmount}", "${inCommission}")`;
+
+    sqlDBConnect.query(sql, (err, result) => !err ? res.status(200).json("New Property has been Inserted") 
+    : console.log(err) );
+})
+
+Router.get("/api/invoice-details", (req, res) => {
+    let sql = `
+        SELECT * FROM invoice
+    `;
+
+    sqlDBConnect.query(sql, (err, rows) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send({ error: 'Database query failed' });
+        }
+        res.send(rows);
+    });
+});
+
+// ==============   === Invoice Ended Here ===   ================
 
 
 
