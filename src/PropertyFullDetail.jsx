@@ -1,10 +1,10 @@
-import React, { useState, useInsertionEffect } from 'react'
+import React from 'react'
 import { useLoaderData, useParams } from 'react-router-dom';
 import { usePDF } from 'react-to-pdf';
 import house from './assets/img/house.png'
+import { FaDownload } from "react-icons/fa6";
 
 export default function PropertyFullDetail() {
-
 
     const { toPDF, targetRef } = usePDF({filename: 'page.pdf'});
   
@@ -12,14 +12,20 @@ export default function PropertyFullDetail() {
 
 
     return (
-    <div className='w-full h-full'>
-        <section>
-            <div className="container mx-auto py-10">
+    <div className='w-full h-full pt-10 px-5'>
+
+        
+        <div className='flex justify-end'>        
+            <button onClick={toPDF} className='flex gap-2 transition-all hover:bg-dark-primary-clr bg-primary-clr text-xl px-6 py-2 rounded-[30px] text-white'> <FaDownload /> Export</button>
+        </div>
+
+        <section ref={targetRef} className='flex justify-center'>
+            <div className="container mx-auto pt-10">
                 <h1 className='text-center text-3xl font-bold'>Property Details</h1>
                 
-                <div className='mt-10 w-full grid justify-center'>
-                    <div className='flex'>
-                        <img src={house} className='w-[300px] rounded-lg' alt="House Image" />
+                <div className='mt-10 w-full h-full min-h-screen grid justify-center'>
+                    <div className='lg:flex grid justify-items-center lg:gap-0 gap-10 h-fit'>
+                        <img src={house} className='w-[300px] h-fit rounded-lg' alt="House Image" />
 
                         <div className='grid'>
                             
@@ -44,31 +50,16 @@ export default function PropertyFullDetail() {
                             <p className='grid font-medium my-[10px] mx-[50px] text-grayish-clr'>Location: <span className='text-[19px] text-black'>{loader.property_location}</span></p>
                         
                         </div>
+                        
                     </div>
 
-                    <section className='property-additional-info'>
-                        <h1 className='text-center text-3xl py-[80px] font-semibold'>Additional Info</h1>
-
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th>Number of Floors</th>
-                                    <td>YES</td>
-                                </tr>
-                                <tr>
-                                    <th>Land</th>
-                                    <td>YES</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </section>
-
-
+                    <p className='relative self-end font-medium bottom-0'>Developer: Agha Naveed</p>
                 </div>
-
-
+                
+                
             </div>
         </section>
+
         
     </div>
     )

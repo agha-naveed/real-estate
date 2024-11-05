@@ -56,14 +56,15 @@ select {
 .property-table tr {
   transition: 0.18s ease-out;
 }
-/* -------- Property Detail Ended ---------- */
 
+/* -------- Property Detail Ended ---------- */
 
 .pr_full_detail_txt {
   grid-template-columns: auto auto auto;
 }
 
 .pr_full_detail_txt p {
+  align-content: center;
   margin: 10px 50px;
   color: rgb(109, 109, 109);
   font-weight: 500;
@@ -122,4 +123,23 @@ input[type=number] {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #8e59e9d5;
+}
+
+
+
+@media only screen and (max-width: 1287px) {
+  .pr_full_detail_txt {
+    grid-template-columns: auto auto;
+  }
+  .pr_full_detail_txt p span {
+    width: max-content;
+  }
+  
+}
+
+@media only screen and (max-width: 990px) {
+  
+  /* .pr_full_detail_txt {
+    grid-template-columns: auto;
+  }  */
 }
