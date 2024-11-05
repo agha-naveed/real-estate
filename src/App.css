@@ -59,6 +59,19 @@ select {
 /* -------- Property Detail Ended ---------- */
 
 
+.pr_full_detail_txt {
+  grid-template-columns: auto auto auto;
+}
+
+.pr_full_detail_txt p {
+  margin: 10px 50px;
+  color: rgb(109, 109, 109);
+  font-weight: 500;
+}
+.pr_full_detail_txt p span {
+  font-size: 19px;
+  color: black;
+}
 
 
 
@@ -94,6 +107,7 @@ input[type=number] {
 /* scroll bar */
 ::-webkit-scrollbar {
   height: 10px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {

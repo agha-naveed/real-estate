@@ -8,7 +8,8 @@ export default {
     extend: {
       colors: {
         "primary-clr": "#673AB7",
-        "dark-primary-clr": "#562D9C"
+        "dark-primary-clr": "#562D9C",
+        "grayish-clr": "rgb(109, 109, 109)"
       }
     },
     
