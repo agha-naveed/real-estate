@@ -46,7 +46,8 @@ Router.post("/api/add-property", (req, res) => {
     : console.log(err) );
 })
 
-Router.get("/api/property-details", (req, res) => {
+Router.get("/api/property-details/", (req, res) => {
+    
     let sql = `
         SELECT property.*, s.seller_name FROM property 
         INNER JOIN seller AS s ON property.seller_id = s.seller_id
@@ -59,6 +60,32 @@ Router.get("/api/property-details", (req, res) => {
         }
         res.send(rows);
     });
+});
+
+Router.get("/api/property-details/:property_id", (req, res) => {
+
+    let propertyId = req.params.property_id; // Get property_id from the URL
+
+    let sql = `
+        SELECT property.*, s.seller_name FROM property 
+        INNER JOIN seller AS s ON property.seller_id = s.seller_id
+        WHERE property.property_id = ?
+    `;
+
+    sqlDBConnect.query(sql, [propertyId], (err, rows) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send({ error: 'Database query failed' });
+        }
+
+        // Check if any property was found
+        if (rows.length === 0) {
+            return res.status(404).send({ message: 'Property not found' });
+        }
+
+        res.send(rows[0]); // Send the first (and only) result
+    });
+    
 });
 
 

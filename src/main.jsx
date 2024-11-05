@@ -16,6 +16,8 @@ import AddSeller from './AddSeller.jsx'
 import Invoice from './Invoice.jsx'
 import InvoiceInfo from './InvoiceInfo.jsx'
 import NewInvoice from './NewInvoice.jsx'
+import PropertyFullDetail from './PropertyFullDetail.jsx'
+import axios from 'axios'
 
 const router = createBrowserRouter([
   {
@@ -32,11 +34,19 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <AllProperties />
+            element: <AllProperties />,
           },
           {
             path: 'add-new-property',
             element: <NewProperty />
+          },
+          {
+            path: ':property_id',
+            element: <PropertyFullDetail />,
+            loader: async ({params}) => {
+              let response = await axios.get(`http://localhost:7000/api/property-details/${params.property_id}`);
+              return response.data  
+            }
           }
         ]
       },
