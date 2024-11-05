@@ -22,7 +22,6 @@ useInsertionEffect(() => {
     }
   };
   propertyData();
-  console.log(userData);
 }, []);
 
 
