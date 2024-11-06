@@ -1,4 +1,4 @@
-import React, { useState, useInsertionEffect, useRef } from 'react'
+import React, { useState, useInsertionEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { FiPlus } from "react-icons/fi";
 import axios from 'axios';
@@ -73,7 +73,7 @@ useInsertionEffect(() => {
                         <td>{u_data.property_location}</td>
                         <td>{u_data.property_status}</td>
                         <td>{u_data.entry_date}</td>
-                        <td><Link to={`${u_data.property_id}`}>Click</Link></td>
+                        <td><Link to={`${u_data.property_id}`}> <span className='bg-green-700 text-white text-[15px] px-4 py-2 rounded-lg hover:bg-green-800 transition-all'>View</span> </Link></td>
                       </tr>
                       )
 

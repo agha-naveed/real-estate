@@ -78,12 +78,12 @@ Router.get("/api/property-details/:property_id", (req, res) => {
             return res.status(500).send({ error: 'Database query failed' });
         }
 
-        // Check if any property was found
+        
         if (rows.length === 0) {
             return res.status(404).send({ message: 'Property not found' });
         }
 
-        res.send(rows[0]); // Send the first (and only) result
+        res.send(rows[0]);
     });
     
 });
@@ -196,7 +196,7 @@ Router.post("/api/create-new-invoice", (req, res) => {
 
 
      
-    let sql = `INSERT INTO invoice(property_id, buyer_id, seller_id, invoice_date, invoice_recievable_amount, invoice_payable_amount, commission_amount) VALUES ("${propertyId}", "${buyerId}", "${sellerId}", "${(new Date()).toLocaleDateString('en-CA')}", "${inRecvAmount}", "${inPayAmount}", "${inCommission}")`;
+    let sql = `INSERT INTO invoice(property_id, buyer_id, seller_id, invoice_date, invoice_recievable_amount, invoice_payable_amount, commission_amount) VALUES ("${propertyId}", "${buyerId}", "${sellerId}", "${(new Date()).toLocaleDateString('en-CA')}", "${inRecvAmount}", "${inPayAmount}", "${inCommission}"); UPDATE property SET property_status = "sold" WHERE property_id = ${propertyId}`;
 
     sqlDBConnect.query(sql, (err, result) => !err ? res.status(200).json("New Property has been Inserted") 
     : console.log(err) );
@@ -206,8 +206,6 @@ Router.get("/api/invoice-details", (req, res) => {
     
     let sql = `SELECT inv.*, p.seller_id FROM invoice AS inv INNER JOIN property AS p ON inv.property_id = p.property_id`;
 
-    // let sql = `SELECT * FROM invoice`;
-
     sqlDBConnect.query(sql, (err, rows) => {
         if (err) {
             console.error(err);
@@ -215,6 +213,7 @@ Router.get("/api/invoice-details", (req, res) => {
         }
         res.send(rows);
     });
+    
 });
 
 // ==============   === Invoice Ended Here ===   ================
