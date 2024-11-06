@@ -53,7 +53,6 @@ export default function PropertyFullDetail() {
                         
                     </div>
 
-                    <p className='relative self-end font-medium bottom-0'>Developer: Agha Naveed</p>
                 </div>
                 
                 

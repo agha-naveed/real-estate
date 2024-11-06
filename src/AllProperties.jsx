@@ -2,15 +2,12 @@ import React, { useState, useInsertionEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { FiPlus } from "react-icons/fi";
 import axios from 'axios';
-import { usePDF } from 'react-to-pdf';
 
 
 
 export default function AllProperties() {
 
   const [userData, setUserData] = useState([]);
-
-  const { toPDF, targetRef } = usePDF({filename: 'page.pdf'});
   
 useInsertionEffect(() => {
   const propertyData = async () => {
@@ -38,7 +35,7 @@ useInsertionEffect(() => {
 
        
         <div className='w-[98%] h-full overflow-x-auto'>
-          <div ref={targetRef} className='w-max overflow-x-auto py-2 px-5'>
+          <div className='w-max overflow-x-auto py-2 px-5'>
             <table className='property-table'>
               <caption className='text-start my-2 text-xl font-bold'>Properties Detail</caption>
               <thead className='font-semibold'>
@@ -86,8 +83,6 @@ useInsertionEffect(() => {
             </table>
           </div>
         </div>
-
-        <button className='bg-slate-800 text-white px-3 py-2 rounded-2xl mt-2' onClick={() => {toPDF()} }>DOWNLOAD</button>
 
     </section>
   )
