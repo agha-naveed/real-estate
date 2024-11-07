@@ -13,6 +13,10 @@ export default function NewInvoice() {
 
   
     const [selectedPropertyId, setSelectedPropertyId] = useState('');
+    const [selectedBuyerId, setSelectedBuyerId] = useState('');
+    const [buyerID, setBuyerID] = useState('');
+    const [buyerName, setBuyerName] = useState('');
+
     const [sellerID, setSellerID] = useState('');
     const [sellerName, setSellerName] = useState('');
     const [payableAmount, setPayableAmount] = useState('');
@@ -27,7 +31,7 @@ export default function NewInvoice() {
     useInsertionEffect(() => {
       let propertyData = async () => {
         try {
-          let response = await axios.get("http://localhost:7000/api/property-details");
+          let response = await axios.get("http://localhost:7000/api/properties");
           setUserData(response.data);
         } catch (err) {
           console.log(err);
@@ -52,6 +56,37 @@ export default function NewInvoice() {
 
   const handlePropertyChange = (e) => {
     setSelectedPropertyId(e.target.value);
+  };
+
+
+
+
+  useInsertionEffect(() => {
+    let buyerData = async () => {
+      try {
+        let response = await axios.get("http://localhost:7000/api/property-details");
+        setUserData(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    buyerData();
+  }, []);
+
+
+  useEffect(() => {
+    if (selectedBuyerId) {
+        let buyerData = async () => {
+          let response = await axios.get(`http://localhost:7000/api/buyer-details/${setSelectedBuyerId}`);
+            setBuyerName(response.date.buyer_name);
+          }    
+      buyerData()
+    }
+  }, [selectedBuyerId]);
+
+
+const handleBuyerChange = (e) => {
+  setSelectedBuyerId(e.target.value);
 };
 
     // Getting Data Ended
@@ -123,26 +158,44 @@ export default function NewInvoice() {
 
     return (
       <Form onSubmit={handleSubmit(onSubmit)} method='POST' className='add-property-form xl:w-[600px] lg:w-[70%] w-full py-10 px-8'>
-        <div>
-          <label htmlFor="prp-id">Property ID</label>
-          <select value={selectedPropertyId} onChange={handlePropertyChange}>
-              <option value="" defaultValue={true}>Select a property</option>
-            {
-              userData.map((item, index) => {
-                return (
-                  <option key={`p_id_selec_${index}`} value={item.property_id}>{item.property_id}</option>
-                )
-              })
-            }
-          </select>
+        
+          <div>
+            <label htmlFor="prp-id">Property ID</label>
+            <select value={selectedPropertyId} onChange={handlePropertyChange}>
+                <option value="" defaultValue={true}>Select a property</option>
+              {
+                userData.map((item, index) => {
+                  return (
+                    <option key={`p_id_selec_${index}`} value={item.property_id}>{item.property_id}</option>
+                  )
+                })
+              }
+            </select>
+
+          </div>
+
+        <div className='flex gap-5'>
+          <div>
+            <label htmlFor="buy-id">Buyer ID</label>
+            <select value={selectedPropertyId} id='buy-id' {...register("buyer_id")} onChange={handlePropertyChange}>
+                <option value="" defaultValue={true}>Select a property</option>
+              {
+                userData.map((item, index) => {
+                  return (
+                    <option key={`p_id_selec_${index}`} value={item.property_id}>{item.property_id}</option>
+                  )
+                })
+              }
+            </select>
+
+          </div>
+
+          <div>
+            <label htmlFor="buy-name">Buyer Name</label>
+            <input type="text" id='buy-name' {...register("buyer_name")} readOnly required />
+          </div>
 
         </div>
-
-        <div>
-        <div>
-          <label htmlFor="buy-id">Buyer ID</label>
-          <input type="number" id='buy-id' {...register("buyer_id")} required />
-        </div>  </div>
         
       
         <div className='md:flex grid md:gap-5'>

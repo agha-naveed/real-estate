@@ -10,7 +10,9 @@ app.use(cors());
 
 app.use("/", RouterPath);
 app.use("/api/user", RouterPath);
+
 // Property
+app.use("/api/properties", RouterPath);
 app.use("/api/add-property", RouterPath);
 app.use("/api/property-details", RouterPath);
 

@@ -21,8 +21,17 @@ Router.get("/", (req, resp) => {
 
 // ==============   === Property Here ===   ================
 
+
+
 Router.get("/api/add-property", (req, res) => {
     sqlDBConnect.query("select * from property", (err, rows) => {
+        !err? res.send(rows) : console.log(err);
+    })
+    
+})
+
+Router.get("/api/properties", (req, res) => {
+    sqlDBConnect.query("select property_id from property", (err, rows) => {
         !err? res.send(rows) : console.log(err);
     })
     
@@ -118,6 +127,9 @@ Router.get("/api/property-details/:property_id/seller-p_price", (req, res) => {
 
 
 
+
+
+
 // ==============   === Property Ended Here ===   ================
 
 // ---------------------------------------------------------
@@ -197,6 +209,35 @@ Router.get("/api/buyer-details", (req, res) => {
         res.send(rows);
     });
 });
+
+
+Router.get("/api/buyer-details/:buyer_id", (req, res) => {
+
+    let buyerId = req.params.buyer_id;
+
+    let sql = `
+        SELECT b.buyer_id, b.buyer_name FROM buyer AS b WHERE buyer_id = ?
+    `;
+
+    sqlDBConnect.query(sql, [buyerId], (err, rows) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send({ error: 'Database query failed' });
+        }
+
+        
+        if (rows.length === 0) {
+            return res.status(404).send({ message: 'Property not found' });
+        }
+
+        res.send(rows[0]);
+    });
+    
+});
+
+
+
+
 
 // ==============   === Buyer Ended Here ===   ================
 
