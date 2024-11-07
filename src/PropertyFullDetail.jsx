@@ -1,6 +1,9 @@
 import React, { useRef } from 'react'
 import { useLoaderData } from 'react-router-dom';
 import house from './assets/img/house.png'
+import commercial from './assets/img/commercial.png'
+import land from './assets/img/land.png'
+import mixUse from './assets/img/mix-use.png'
 import { FaDownload } from "react-icons/fa6";
 import { usePDF  } from 'react-to-pdf';
 import aghaLogo from './assets/img/agha_naveed_logo.png'
@@ -10,7 +13,7 @@ export default function PropertyFullDetail() {
     
     let loader = useLoaderData()
 
-    const { toPDF, targetRef } = usePDF({filename: 'page.pdf'});
+    const { toPDF, targetRef } = usePDF({filename: 'property_invoice.pdf'});
     
 
 
@@ -36,7 +39,11 @@ export default function PropertyFullDetail() {
                 
                 <div className='mt-10 w-full h-full grid justify-center'>
                     <div className='lg:flex grid justify-items-center lg:gap-0 gap-10 h-fit'>
-                        <img src={house} className='w-[300px] h-fit rounded-lg' alt="House Image" />
+                        {
+                            (loader.property_type == "residential") ? <img src={house} className='w-[300px] h-fit rounded-lg' alt="House Image" /> : (loader.property_type == "commercial") ? <img src={commercial} className='w-[300px] h-fit rounded-lg' alt="House Image" /> : (loader.property_type == "land") ? <img src={land} className='w-[300px] h-fit rounded-lg' alt="House Image" /> : <img src={mixUse} className='w-[300px] h-fit rounded-lg' alt="House Image" />
+                            
+
+                        }
 
                         <div className='grid'>
                             
