@@ -64,7 +64,7 @@ Router.get("/api/property-details/", (req, res) => {
 
 Router.get("/api/property-details/:property_id", (req, res) => {
 
-    let propertyId = req.params.property_id; // Get property_id from the URL
+    let propertyId = req.params.property_id;
 
     let sql = `
         SELECT property.*, s.seller_name FROM property 
@@ -87,6 +87,35 @@ Router.get("/api/property-details/:property_id", (req, res) => {
     });
     
 });
+
+
+
+
+
+Router.get("/api/property-details/:property_id/seller-p_price", (req, res) => {
+
+    let propertyId = req.params.property_id;
+
+    let sql = `
+        SELECT property.seller_id, seller.seller_name, property.property_price FROM property INNER JOIN seller ON property.seller_id = seller.seller_id where property.property_id = ?
+    `;
+
+    sqlDBConnect.query(sql, [propertyId], (err, rows) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send({ error: 'Database query failed' });
+        }
+
+        
+        if (rows.length === 0) {
+            return res.status(404).send({ message: 'Property not found' });
+        }
+
+        res.send(rows[0]);
+    });
+    
+});
+
 
 
 // ==============   === Property Ended Here ===   ================
