@@ -7,17 +7,16 @@ export default function NewInvoice() {
   
     const [message, setMessage] = useState('')
 
-    const {register, handleSubmit } = useForm()
+    const {register, handleSubmit, setValue } = useForm()
   
     const navigate = useNavigate()
 
   
     const [selectedPropertyId, setSelectedPropertyId] = useState('');
     const [selectedBuyerId, setSelectedBuyerId] = useState('');
-    const [buyerID, setBuyerID] = useState('');
     const [buyerName, setBuyerName] = useState('');
 
-    const [sellerID, setSellerID] = useState('');
+    let [sellerID, setSellerID] = useState('');
     const [sellerName, setSellerName] = useState('');
     const [payableAmount, setPayableAmount] = useState('');
 
@@ -25,6 +24,7 @@ export default function NewInvoice() {
 
 
     const [userData, setUserData] = useState([]);
+    const [buyerDetails, setBuyerDetails] = useState([]);
   
 
 
@@ -37,7 +37,18 @@ export default function NewInvoice() {
           console.log(err);
         }
       };
+
+      let buyerData = async () => {
+        try {
+          let response = await axios.get("http://localhost:7000/api/buyers");
+          setBuyerDetails(response.data);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      
       propertyData();
+      buyerData();
     }, []);
     
 
@@ -48,6 +59,8 @@ export default function NewInvoice() {
               setSellerID(response.data.seller_id);
               setSellerName(response.data.seller_name);
               setPayableAmount(response.data.property_price);
+              setValue("seller_id", response.data.seller_id);
+          
             }    
         propertyData()
       }
@@ -59,28 +72,13 @@ export default function NewInvoice() {
   };
 
 
-
-
-  useInsertionEffect(() => {
-    let buyerData = async () => {
-      try {
-        let response = await axios.get("http://localhost:7000/api/property-details");
-        setUserData(response.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    buyerData();
-  }, []);
-
-
   useEffect(() => {
     if (selectedBuyerId) {
         let buyerData = async () => {
-          let response = await axios.get(`http://localhost:7000/api/buyer-details/${setSelectedBuyerId}`);
-            setBuyerName(response.date.buyer_name);
-          }    
-      buyerData()
+          let response = await axios.get(`http://localhost:7000/api/buyer-details/${selectedBuyerId}`);
+            setBuyerName(response.data.buyer_name);
+          };
+      buyerData();
     }
   }, [selectedBuyerId]);
 
@@ -161,7 +159,7 @@ const handleBuyerChange = (e) => {
         
           <div>
             <label htmlFor="prp-id">Property ID</label>
-            <select value={selectedPropertyId} onChange={handlePropertyChange}>
+            <select value={selectedPropertyId} required {...register("property_id")} onChange={handlePropertyChange}>
                 <option value="" defaultValue={true}>Select a property</option>
               {
                 userData.map((item, index) => {
@@ -177,12 +175,12 @@ const handleBuyerChange = (e) => {
         <div className='flex gap-5'>
           <div>
             <label htmlFor="buy-id">Buyer ID</label>
-            <select value={selectedPropertyId} id='buy-id' {...register("buyer_id")} onChange={handlePropertyChange}>
-                <option value="" defaultValue={true}>Select a property</option>
+            <select value={selectedBuyerId} required id='buy-id' {...register("buyer_id")} onChange={handleBuyerChange}>
+                <option value="" defaultValue={true}>Select a Buyer</option>
               {
-                userData.map((item, index) => {
+                buyerDetails.map((item, index) => {
                   return (
-                    <option key={`p_id_selec_${index}`} value={item.property_id}>{item.property_id}</option>
+                    <option key={`b_id_selec_${index}`} value={item.buyer_id}>{item.buyer_id}</option>
                   )
                 })
               }
@@ -192,7 +190,7 @@ const handleBuyerChange = (e) => {
 
           <div>
             <label htmlFor="buy-name">Buyer Name</label>
-            <input type="text" id='buy-name' {...register("buyer_name")} readOnly required />
+            <input type="text" value={buyerName} id='buy-name' readOnly required />
           </div>
 
         </div>
@@ -202,7 +200,7 @@ const handleBuyerChange = (e) => {
           
           <div>
             <label htmlFor="sell-id">Seller ID</label>
-            <input type="id" id='sell-id' value={sellerID} {...register("seller_id")} required readOnly />
+            <input type="number" id='sell-id' {...register("seller_id")} value={sellerID} required readOnly />
           </div>
 
           <div>

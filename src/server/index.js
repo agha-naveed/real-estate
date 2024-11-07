@@ -19,6 +19,7 @@ app.use("/api/property-details", RouterPath);
 // Buyer
 app.use("/api/add-new-buyer", RouterPath);
 app.use("/api/buyer-details", RouterPath);
+app.use("/api/buyers", RouterPath);
 
 // Seller
 app.use("/api/add-new-seller", RouterPath);

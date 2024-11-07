@@ -31,7 +31,7 @@ Router.get("/api/add-property", (req, res) => {
 })
 
 Router.get("/api/properties", (req, res) => {
-    sqlDBConnect.query("select property_id from property", (err, rows) => {
+    sqlDBConnect.query("select property_id from property WHERE property_status = 'available'", (err, rows) => {
         !err? res.send(rows) : console.log(err);
     })
     
@@ -181,7 +181,13 @@ Router.get("/api/add-new-buyer", (req, res) => {
     sqlDBConnect.query("select * from buyer", (err, rows) => {
         !err? res.send(rows) : console.log(err);
     })
-    
+})
+
+
+Router.get("/api/buyers", (req, res) => {
+    sqlDBConnect.query("select buyer_id from buyer", (err, rows) => {
+        !err? res.send(rows) : console.log(err);
+    })
 })
 
 
