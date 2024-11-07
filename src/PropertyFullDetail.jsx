@@ -20,15 +20,21 @@ export default function PropertyFullDetail() {
 
         
         <div className='flex justify-end'>        
-            <button onClick={toPDF} className='flex gap-2 transition-all hover:bg-dark-primary-clr bg-primary-clr text-xl px-6 py-2 rounded-[30px] text-white'> <FaDownload /> Export</button>
+            <button onClick={toPDF} className='flex relative z-10 gap-2 transition-all hover:bg-dark-primary-clr bg-primary-clr text-xl px-6 py-2 rounded-[30px] text-white'> <FaDownload /> Export</button>
+            
         </div>
 
         <section ref={targetRef} className='flex justify-center'>
-            <div className="container mx-auto pt-10">
-                <img src={aghaLogo} className='w-[60px]' alt="Agha Naveed Logo" />
+            
+
+            <div className="container mx-auto grid place-content-center py-20">
+                <div className='justify-items-end'>
+                    <img src={aghaLogo} className='w-[70px]' alt="Agha Naveed Logo" />
+                </div>
+
                 <h1 className='text-center text-3xl font-bold'>Property Details</h1>
                 
-                <div className='mt-10 w-full h-full min-h-screen grid justify-center'>
+                <div className='mt-10 w-full h-full grid justify-center'>
                     <div className='lg:flex grid justify-items-center lg:gap-0 gap-10 h-fit'>
                         <img src={house} className='w-[300px] h-fit rounded-lg' alt="House Image" />
 
@@ -59,7 +65,7 @@ export default function PropertyFullDetail() {
                     </div>
 
                 </div>
-                
+
                 
             </div>
         </section>
