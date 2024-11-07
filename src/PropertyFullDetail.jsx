@@ -1,14 +1,17 @@
-import React from 'react'
-import { useLoaderData, useParams } from 'react-router-dom';
+import React, { useRef } from 'react'
+import { useLoaderData } from 'react-router-dom';
 import house from './assets/img/house.png'
 import { FaDownload } from "react-icons/fa6";
-import { useReactToPrint } from 'react-to-print';
+import { usePDF  } from 'react-to-pdf';
 import aghaLogo from './assets/img/agha_naveed_logo.png'
 
 export default function PropertyFullDetail() {
 
-
+    
     let loader = useLoaderData()
+
+    const { toPDF, targetRef } = usePDF({filename: 'page.pdf'});
+    
 
 
 
@@ -17,12 +20,12 @@ export default function PropertyFullDetail() {
 
         
         <div className='flex justify-end'>        
-            <button onClick={()=> handleDownloadPdf()} className='flex gap-2 transition-all hover:bg-dark-primary-clr bg-primary-clr text-xl px-6 py-2 rounded-[30px] text-white'> <FaDownload /> Export</button>
+            <button onClick={toPDF} className='flex gap-2 transition-all hover:bg-dark-primary-clr bg-primary-clr text-xl px-6 py-2 rounded-[30px] text-white'> <FaDownload /> Export</button>
         </div>
 
-        <section ref={componentRef} className='flex justify-center'>
+        <section ref={targetRef} className='flex justify-center'>
             <div className="container mx-auto pt-10">
-                <img src={aghaLogo} className='w-[60px]' alt="" />
+                <img src={aghaLogo} className='w-[60px]' alt="Agha Naveed Logo" />
                 <h1 className='text-center text-3xl font-bold'>Property Details</h1>
                 
                 <div className='mt-10 w-full h-full min-h-screen grid justify-center'>
