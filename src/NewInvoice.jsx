@@ -180,7 +180,7 @@ const handleBuyerChange = (e) => {
               {
                 buyerDetails.map((item, index) => {
                   return (
-                    <option key={`b_id_selec_${index}`} value={item.buyer_id}>{item.buyer_id}</option>
+                    <option key={`b_id_selec_${index}`} value={item.buyer_id}>{item.buyer_id} - {item.buyer_name}</option>
                   )
                 })
               }
@@ -188,10 +188,6 @@ const handleBuyerChange = (e) => {
 
           </div>
 
-          <div>
-            <label htmlFor="buy-name">Buyer Name</label>
-            <input type="text" value={buyerName} id='buy-name' readOnly required />
-          </div>
 
         </div>
         

@@ -185,7 +185,7 @@ Router.get("/api/add-new-buyer", (req, res) => {
 
 
 Router.get("/api/buyers", (req, res) => {
-    sqlDBConnect.query("select buyer_id from buyer", (err, rows) => {
+    sqlDBConnect.query("select buyer_id, buyer_name from buyer", (err, rows) => {
         !err? res.send(rows) : console.log(err);
     })
 })
