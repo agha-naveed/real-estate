@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Form, useNavigate } from 'react-router-dom'
 
@@ -8,7 +8,7 @@ export default function AddSeller() {
   
   const [message, setMessage] = useState('')
 
-  const {register, handleSubmit } = useForm()
+  const { register, handleSubmit } = useForm()
 
   const navigate = useNavigate()
 

@@ -18,12 +18,12 @@ export default function NewProperty() {
     let seller_detail = async () => {
       try {
         let response = await axios.get("http://localhost:7000/api/sellers");
-        setSellerDetail(response.data);
-        console.log(sellerDetail)
+        setSellerDetail(response.data)
       } catch (err) {
         console.log(err);
       }
     };
+    
     seller_detail()
 
   }, [])
@@ -59,11 +59,12 @@ export default function NewProperty() {
               <option value="" defaultValue={true}>-- select --</option>
               {
                 sellerDetail.map((item, index) => {
-                  <option value={item.seller_id}>{item.seller_id} - {item.seller_name}</option>
+                  return (
+                    <option key={`seller-ind-${index}`} value={item.seller_id}>{item.seller_id} - {item.seller_name}</option>
+                  )
                 })
               }
             </select>
-            <input type="number" required  id='s-id' />
           </div>
 
           <div className='grid'>
