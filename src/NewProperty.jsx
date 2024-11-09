@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useInsertionEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Form, useNavigate } from 'react-router-dom'
 
@@ -7,17 +7,33 @@ import { Form, useNavigate } from 'react-router-dom'
 export default function NewProperty() {
 
   const [message, setMessage] = useState('')
+  const [sellerDetail, setSellerDetail] = useState([])
 
-  const {register, handleSubmit } = useForm()
+
+  const { register, handleSubmit } = useForm()
 
   const navigate = useNavigate()
+
+  useInsertionEffect(() => {
+    let seller_detail = async () => {
+      try {
+        let response = await axios.get("http://localhost:7000/api/sellers");
+        setSellerDetail(response.data);
+        console.log(sellerDetail)
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    seller_detail()
+
+  }, [])
 
   const onSubmit = (data) => {
     console.log(data);
 
     const res = axios.post("http://localhost:7000/api/add-property", data)
     .then(response => setMessage(response.data));
-
+    
 
     if(!message) {
       setMessage(res.data);
@@ -39,7 +55,15 @@ export default function NewProperty() {
         <div className='flex gap-5'>
           <div title='Write a SellerID that should be Specified!' className='grid'>
             <label htmlFor="s-id">Seller Id</label>
-            <input type="number" required {...register("seller_id")} id='s-id' />
+            <select {...register("seller_id")} required id="s-id">
+              <option value="" defaultValue={true}>-- select --</option>
+              {
+                sellerDetail.map((item, index) => {
+                  <option value={item.seller_id}>{item.seller_id} - {item.seller_name}</option>
+                })
+              }
+            </select>
+            <input type="number" required  id='s-id' />
           </div>
 
           <div className='grid'>

@@ -24,6 +24,7 @@ app.use("/api/buyers", RouterPath);
 // Seller
 app.use("/api/add-new-seller", RouterPath);
 app.use("/api/seller-details", RouterPath);
+app.use("/api/sellers", RouterPath);
 
 // Invoice
 app.use("/api/create-new-invoice", RouterPath);

@@ -144,6 +144,12 @@ Router.get("/api/add-new-seller", (req, res) => {
     
 })
 
+Router.get("/api/sellers", (req, res) => {
+    sqlDBConnect.query("select s.seller_id, s.seller_name from seller as s", (err, rows) => {
+        !err? res.send(rows) : console.log(err);
+    })
+    
+})
 
 Router.post("/api/add-new-seller", (req, res) => {
     const sellerName = req.body.seller_name;
