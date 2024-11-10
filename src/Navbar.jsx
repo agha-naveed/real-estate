@@ -4,7 +4,9 @@ import logo from './assets/img/logo.png'
 import { MdOutlineSpaceDashboard, MdPermIdentity  } from "react-icons/md";
 import { PiHouse } from "react-icons/pi";
 import { TbReportAnalytics, TbFileInvoice } from "react-icons/tb";
+import { IoSearch } from "react-icons/io5";
 import { Link } from 'react-router-dom'
+
 
 export default function Navbar() {
     return (
@@ -56,6 +58,14 @@ export default function Navbar() {
                         <span className='text-white text-[21px] md:block hidden'>Report</span>
                     </Link>
                 </li>
+                
+                <li>
+                    <Link to='search' className='md:py-[14px] md:px-[40px] p-2 md:justify-start justify-center'>
+                        <IoSearch  className='text-white font-thin text-[25px]' />
+                        <span className='text-white text-[21px] md:block hidden'>Search</span>
+                    </Link>
+                </li>
+                
 
             </ul>
 

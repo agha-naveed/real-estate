@@ -18,6 +18,8 @@ import InvoiceInfo from './InvoiceInfo.jsx'
 import NewInvoice from './NewInvoice.jsx'
 import PropertyFullDetail from './PropertyFullDetail.jsx'
 import axios from 'axios'
+import Search from './Search.jsx'
+import SearchItems from './SearchItems.jsx'
 
 const router = createBrowserRouter([
   {
@@ -89,6 +91,16 @@ const router = createBrowserRouter([
           {
             path: 'create-new-invoice',
             element: <NewInvoice />
+          }
+        ]
+      },
+      {
+        path: 'search',
+        element: <Search />,
+        children: [
+          {
+            index: true,
+            element: <SearchItems />
           }
         ]
       }
