@@ -49,7 +49,7 @@ Router.post("/api/add-property", (req, res) => {
     const propertyLocation = req.body.property_location;
 
 
-    let sql = `INSERT INTO property(property_type, property_size, property_city, property_state, property_zip, property_price, property_location, entry_date) VALUES ("${propertyType}", "${propertySize}", "${propertyCity}", "${propertyState}", "${propertyZip}", "${propertyPrice}", "${propertyLocation}", "${(new Date()).toLocaleDateString('en-CA')}")`
+    let sql = `INSERT INTO property(seller_id, property_type, property_size, property_city, property_state, property_zip, property_price, property_location, entry_date) VALUES ("${sellerId}", "${propertyType}", "${propertySize}", "${propertyCity}", "${propertyState}", "${propertyZip}", "${propertyPrice}", "${propertyLocation}", "${(new Date()).toLocaleDateString('en-CA')}")`
 
     sqlDBConnect.query(sql, (err, result) => !err ? res.status(200).json("New Property has been Inserted") 
     : console.log(err) );
