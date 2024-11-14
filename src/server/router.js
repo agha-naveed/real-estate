@@ -30,12 +30,27 @@ Router.get("/api/add-property", (req, res) => {
     
 })
 
-Router.get("/api/properties", (req, res) => {
-    sqlDBConnect.query("select property_id from property WHERE property_status = 'available'", (err, rows) => {
-        !err? res.send(rows) : console.log(err);
-    })
-    
-})
+Router.get("/api/search-property", (req, res) => {
+    const pSize = req.query.property_size;
+    const pType = req.query.property_type;
+    const pCity = req.query.property_city;
+
+    let sql = `SELECT * FROM property WHERE 1=1`;
+
+
+    if (pSize) sql += ` AND property_size >= ${pSize}`;
+    if (pCity) sql += ` AND property_location LIKE '%${pCity}%'`;
+    if (pType) sql += ` AND property_type = '${pType}'`;
+
+
+    sqlDBConnect.query(sql, (err, rows) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send({ error: 'Database query failed' });
+        }
+        res.send(rows);
+    });
+});
 
 
 Router.post("/api/add-property", (req, res) => {

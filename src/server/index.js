@@ -15,6 +15,7 @@ app.use("/api/user", RouterPath);
 app.use("/api/properties", RouterPath);
 app.use("/api/add-property", RouterPath);
 app.use("/api/property-details", RouterPath);
+app.use("/api/search-property", RouterPath);
 
 // Buyer
 app.use("/api/add-new-buyer", RouterPath);

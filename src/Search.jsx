@@ -1,15 +1,46 @@
-import React from 'react'
-import { Form, Outlet } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Form, Outlet, useNavigate } from 'react-router-dom'
 import HeaderDiv from './HeaderDiv'
 import { useForm } from 'react-hook-form'
+import axios from 'axios'
+import SearchItems from './SearchItems'
 
 
 
 export default function Search() {
-    
+  
+    const [message, setMessage] = useState('')
 
-  const { register, handleSubmit, watch } = useForm();
-  const selectedValue = watch("size");
+    const {register, handleSubmit, } = useForm()
+    
+    const [userData, setUserData] = useState([]);
+  
+  
+    const onSubmit = async (data) => {
+        try {
+            const response = await axios.get("http://localhost:7000/api/search-property", {
+                params: {
+                    property_type: data.property_type,
+                    property_size: data.property_size,
+                    property_city: data.property_city
+                }
+            });
+            
+            setUserData(response.data);
+            setMessage('');
+        } catch (error) {
+            console.warn(error);
+            setMessage("Error Occurred!");
+        }
+    };
+
+
+
+
+
+
+
+
 
   return (
     <div className='search-section w-full'>
@@ -17,7 +48,7 @@ export default function Search() {
         <div className="container">
             
             <section className='search-values'>
-                <Form action="" method='POST' className='search-form grid justify-center xl:w-[700px] lg:w-[70%] w-full py-10 px-8'>
+                <Form onSubmit={handleSubmit(onSubmit)} method='POST' className='search-form grid justify-center xl:w-[700px] lg:w-[70%] w-full py-10 px-8'>
                     
                     <div>
                         <label htmlFor="">Property Type</label>
@@ -46,7 +77,7 @@ export default function Search() {
             </section>
 
             <div className="search-items">
-                <Outlet />
+                <SearchItems userData={userData} />
             </div>
         </div>
     </div>
