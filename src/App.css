@@ -76,6 +76,21 @@ select {
 
 
 
+/* -------- Search ---------- */
+
+
+.search-form select, .search-form input {
+  width: 100%;
+  padding: 5px 10px;
+  height: 35px;
+  border: 1px solid rgba(80, 80, 80, 0.527);
+  border-radius: 8px;
+}
+
+
+/* -------- Search Ended ---------- */
+
+
 /* Global Css */
 .submit-btn {
   background-color: #673AB7;
@@ -127,6 +142,7 @@ input[type=number] {
 
 
 
+
 @media only screen and (max-width: 1287px) {
   .pr_full_detail_txt {
     grid-template-columns: auto auto;
@@ -135,11 +151,4 @@ input[type=number] {
     width: max-content;
   }
   
-}
-
-@media only screen and (max-width: 990px) {
-  
-  /* .pr_full_detail_txt {
-    grid-template-columns: auto;
-  }  */
 }
