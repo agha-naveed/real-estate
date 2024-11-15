@@ -25,6 +25,7 @@ export default function AllReceiptVoucher() {
             </tr>
           </thead>
           <tbody>
+            
             {/* {
               userData.map((u_data, i) => {
                 return (

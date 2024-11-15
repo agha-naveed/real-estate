@@ -41,8 +41,6 @@ export default function PropertyFullDetail() {
                     <div className='lg:flex grid justify-items-center lg:gap-0 gap-10 h-fit'>
                         {
                             (loader.property_type == "residential") ? <img src={house} className='w-[300px] h-fit rounded-lg' alt="House Image" /> : (loader.property_type == "commercial") ? <img src={commercial} className='w-[300px] h-fit rounded-lg' alt="House Image" /> : (loader.property_type == "land") ? <img src={land} className='w-[300px] h-fit rounded-lg' alt="House Image" /> : <img src={mixUse} className='w-[300px] h-fit rounded-lg' alt="House Image" />
-                            
-
                         }
 
                         <div className='grid'>

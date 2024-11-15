@@ -50,7 +50,6 @@ export default function NewProperty() {
   return (
     <div>
       <Form onSubmit={handleSubmit(onSubmit)} method='POST' className='add-property-form xl:w-[600px] lg:w-[70%] w-full py-10 px-8'>
-        <p>{message}</p>
       
         <div className='flex gap-5'>
           <div title='Write a SellerID that should be Specified!' className='grid'>
