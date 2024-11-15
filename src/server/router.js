@@ -35,12 +35,14 @@ Router.get("/api/search-property", (req, res) => {
     const pType = req.query.property_type;
     const pCity = req.query.property_city;
 
-    let sql = `SELECT * FROM property WHERE 1=1`;
+    let sql = `SELECT p.* FROM property as p WHERE 1=1`;
 
 
     if (pSize) sql += ` AND property_size >= ${pSize}`;
     if (pCity) sql += ` AND property_location LIKE '%${pCity}%'`;
     if (pType) sql += ` AND property_type = '${pType}'`;
+
+    // sql += ` inner join `
 
 
     sqlDBConnect.query(sql, (err, rows) => {

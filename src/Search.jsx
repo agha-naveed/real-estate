@@ -27,6 +27,7 @@ export default function Search() {
             });
             
             setUserData(response.data);
+            console.log(response.data)
             setMessage('');
         } catch (error) {
             console.warn(error);
@@ -43,7 +44,7 @@ export default function Search() {
 
 
   return (
-    <div className='search-section w-full'>
+    <div className='search-section w-full overflow-hidden'>
         <HeaderDiv value={"Search"} />
         <div className="container">
             
@@ -76,9 +77,14 @@ export default function Search() {
 
             </section>
 
-            <div className="search-items">
-                <SearchItems userData={userData} />
-            </div>
+            {
+                userData ? 
+                <div className="search-items">
+                    <SearchItems userData={userData} />
+                </div>
+                :
+                null
+            }
         </div>
     </div>
   )
