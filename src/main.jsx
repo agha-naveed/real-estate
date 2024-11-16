@@ -109,7 +109,8 @@ const router = createBrowserRouter([
         children: [{
           index: true,
           element: <AllRV/>
-        }, {
+        }, 
+        {
           path: 'new-receipt-voucher',
           element: <NewRV />
         }]
@@ -120,7 +121,8 @@ const router = createBrowserRouter([
         children: [{
           index: true,
           element: <AllPV />
-        }, {
+        }, 
+        {
           path: 'new-payment-voucher',
           element: <NewPV/>
         }]
