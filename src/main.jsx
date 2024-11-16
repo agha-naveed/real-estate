@@ -22,9 +22,9 @@ import Search from './Search.jsx'
 import ReceiptVoucher from './ReceiptVoucher.jsx'
 import PaymentVoucher from './PaymentVoucher.jsx'
 import AllRV from './AllReceiptVoucher.jsx'
-import AllPV from './AllPaymentVoucher.jsx'
-import NewRV from './NewReceiptVoucher.jsx'
-import NewPV from './NewPaymentVoucher.jsx'
+import AllPV from './AllPaymentVoucher.jsx';
+import NewReceiptVoucher from './newReceiptVoucher.jsx'
+import NewPV from './NewPaymentVoucher.jsx';
 
 const router = createBrowserRouter([
   {
@@ -112,7 +112,7 @@ const router = createBrowserRouter([
         }, 
         {
           path: 'new-receipt-voucher',
-          element: <NewRV />
+          element: <NewReceiptVoucher />
         }]
       },
       {

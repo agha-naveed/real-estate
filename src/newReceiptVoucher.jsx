@@ -46,13 +46,17 @@ export default function NewReceiptVoucher() {
 
   }, [])
   
+  const handlePropertyChange = (e) => {
+    setInv_id(e.target.value);
+  };
+
   return (
     <div>
       <Form onSubmit={handleSubmit(onSubmit)} method='POST' className='add-property-form xl:w-[600px] lg:w-[70%] w-full py-10 px-8'>
         <div>
           <div title='Invoice ID' className='grid'>
             <label htmlFor="in-id">Invoice Id</label>
-            <select value={inv_id} {...register("invoice_id")} required id="s-id">
+            <select onChange={handlePropertyChange} value={inv_id} {...register("invoice_id")} required id="s-id">
               <option value="" defaultValue={true}>-- select --</option>
               {
                 invoice.map((item, index) => {
