@@ -51,27 +51,39 @@ export default function Search() {
             <section className='search-values'>
                 <Form onSubmit={handleSubmit(onSubmit)} method='POST' className='search-form grid justify-center xl:w-[700px] lg:w-[70%] w-full py-10 px-8'>
                     
-                    <div className='flex'>
+                    <div className='flex gap-1'>
                         <div className='search-p-size grid w-1/3'>
-                            <label htmlFor="" className='text-[14px]'>Property Size (Sq.ft)</label>
-                            <input type="text" placeholder='100' {...register("property_size")} />
+                            <label htmlFor="" className='text-[14px]'>Size (Sq.ft)</label>
+                            <input type="number" placeholder='100' className='w-[20%]' {...register("property_size")} />
                         </div>
 
-                        <div>
-                            <label htmlFor="as">City</label>
-                            <input type="text" id='as' {...register("property_city")} />
+                        <div className='w-full'>
+                            <label htmlFor="as" className='text-[14px]'>City</label>
+                            <input type="text" id='as' className='w-[80%]' {...register("property_city")} />
                         </div>
                     </div>
                     
                     
-                    <div>
-                        <label htmlFor="">Property Type</label>
-                        <select name="" {...register("property_type")} id="">
-                            <option value="residential">Residential</option>
-                            <option value="commercial">Commercial</option>
-                            <option value="land">Land</option>
-                            <option value="mixuse">Mix-Used</option>
-                        </select>
+                    <div className='flex gap-1'>
+                        <div className='w-full'>
+                            <label htmlFor="" className='text-[14px]'>Property Type</label>
+                            <select name="" {...register("property_type")} id="">
+                            <option value="-" defaultValue={true}>-- select --</option>
+                                <option value="residential">Residential</option>
+                                <option value="commercial">Commercial</option>
+                                <option value="land">Land</option>
+                                <option value="mixuse">Mix-Used</option>
+                            </select>
+                        </div>
+
+                        <div className='w-full'>
+                            <label htmlFor="" className='text-[14px]'>Price</label>
+                            <div className='flex'>
+                                <input type="number" placeholder='0' {...register("property_starting_price")} />
+                                    <span className='text-[20px] mx-2'>-</span>
+                                <input type="number" placeholder='100000' {...register("property_ending_price")} />
+                            </div>
+                        </div>
                     </div>
 
                     

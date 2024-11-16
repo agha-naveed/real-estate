@@ -34,6 +34,8 @@ Router.get("/api/search-property", (req, res) => {
     const pSize = req.query.property_size;
     const pType = req.query.property_type;
     const pCity = req.query.property_city;
+    const pStartingPrice = req.query.property_starting_price;
+    const pEndingPrice = req.query.property_ending_price;
 
     let sql = `SELECT p.*, s.seller_name FROM property as p INNER JOIN seller AS s on p.seller_id = s.seller_id WHERE 1=1`;
 
@@ -41,6 +43,7 @@ Router.get("/api/search-property", (req, res) => {
     if (pSize) sql += ` AND property_size >= ${pSize}`;
     if (pCity) sql += ` AND property_location LIKE '%${pCity}%'`;
     if (pType) sql += ` AND property_type = '${pType}'`;
+    if (pEndingPrice) sql += ` AND property_price BETWEEN '${pStartingPrice}' AND '${pEndingPrice}'`;
 
 
 
