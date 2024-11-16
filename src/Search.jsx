@@ -51,6 +51,19 @@ export default function Search() {
             <section className='search-values'>
                 <Form onSubmit={handleSubmit(onSubmit)} method='POST' className='search-form grid justify-center xl:w-[700px] lg:w-[70%] w-full py-10 px-8'>
                     
+                    <div className='flex'>
+                        <div className='search-p-size grid w-1/3'>
+                            <label htmlFor="" className='text-[14px]'>Property Size (Sq.ft)</label>
+                            <input type="text" placeholder='100' {...register("property_size")} />
+                        </div>
+
+                        <div>
+                            <label htmlFor="as">City</label>
+                            <input type="text" id='as' {...register("property_city")} />
+                        </div>
+                    </div>
+                    
+                    
                     <div>
                         <label htmlFor="">Property Type</label>
                         <select name="" {...register("property_type")} id="">
@@ -61,30 +74,16 @@ export default function Search() {
                         </select>
                     </div>
 
-                    <div className='search-p-size'>
-                        <label htmlFor="">Property Size (Sq.ft)</label>
-                        <input type="text" placeholder='100' {...register("property_size")} />
-                    </div>
-
-                    <div>
-                        <label htmlFor="as">City</label>
-                        <input type="text" id='as' {...register("property_city")} />
-                    </div>
-
+                    
                     <button type='submit' className='submit-btn rounded-xl mt-3'>Search</button>
 
                 </Form>
 
             </section>
-
-            {
-                userData ? 
-                <div className="search-items">
-                    <SearchItems userData={userData} />
-                </div>
-                :
-                null
-            }
+ 
+            <div className="search-items">
+                <SearchItems userData={userData} />
+            </div>
         </div>
     </div>
   )

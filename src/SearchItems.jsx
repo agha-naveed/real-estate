@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom'
 
 export default function SearchItems({userData}) {
   return (
-    <div className='w-[98%] h-full overflow-x-auto'>
+    <>
+      {
+        userData.length != 0 ?
+        <div className='w-[98%] h-full overflow-x-auto'>
           <div className='w-max overflow-x-auto py-2 px-5'>
             <table className='property-table'>
               <caption className='text-start my-2 text-xl font-bold'>Properties Detail</caption>
@@ -52,5 +55,8 @@ export default function SearchItems({userData}) {
             </table>
           </div>
         </div>
+        : null
+      }
+    </>
   )
 }
