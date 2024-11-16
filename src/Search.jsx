@@ -22,12 +22,14 @@ export default function Search() {
                 params: {
                     property_type: data.property_type,
                     property_size: data.property_size,
-                    property_city: data.property_city
+                    property_city: data.property_city,
+                    property_starting_price: data.property_starting_price,
+                    property_ending_price: data.property_ending_price
                 }
             });
             
             setUserData(response.data);
-            console.log(response.data)
+            // console.log(response.data)
             setMessage('');
         } catch (error) {
             console.warn(error);
@@ -46,7 +48,7 @@ export default function Search() {
   return (
     <div className='search-section w-full overflow-hidden'>
         <HeaderDiv value={"Search"} />
-        <div className="container">
+        <div>
             
             <section className='search-values'>
                 <Form onSubmit={handleSubmit(onSubmit)} method='POST' className='search-form grid justify-center xl:w-[700px] lg:w-[70%] w-full py-10 px-8'>
@@ -68,7 +70,7 @@ export default function Search() {
                         <div className='w-full'>
                             <label htmlFor="" className='text-[14px]'>Property Type</label>
                             <select name="" {...register("property_type")} id="">
-                            <option value="-" defaultValue={true}>-- select --</option>
+                            <option value="" defaultValue={true}>-- select --</option>
                                 <option value="residential">Residential</option>
                                 <option value="commercial">Commercial</option>
                                 <option value="land">Land</option>
@@ -93,9 +95,8 @@ export default function Search() {
 
             </section>
  
-            <div className="search-items">
-                <SearchItems userData={userData} />
-            </div>
+            <SearchItems userData={userData} />
+            
         </div>
     </div>
   )
