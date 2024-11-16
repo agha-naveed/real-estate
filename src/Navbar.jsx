@@ -55,7 +55,14 @@ export default function Navbar() {
                 <li>
                     <Link to='' className='md:py-[14px] md:px-[40px] p-2 md:justify-start justify-center'>
                         <TbReportAnalytics  className='text-white font-thin text-[25px]' />
-                        <span className='text-white text-[21px] md:block hidden'>Report</span>
+                        <span className='text-white text-[21px] md:block hidden'>Receipt Voucher</span>
+                    </Link>
+                </li>
+                
+                <li>
+                    <Link to='' className='md:py-[14px] md:px-[40px] p-2 md:justify-start justify-center'>
+                        <TbReportAnalytics  className='text-white font-thin text-[25px]' />
+                        <span className='text-white text-[21px] md:block hidden'>Payment Voucher</span>
                     </Link>
                 </li>
                 
