@@ -30,6 +30,13 @@ Router.get("/api/add-property", (req, res) => {
     
 })
 
+Router.get("/api/properties", (req, res) => {
+    sqlDBConnect.query("SELECT property_id FROM property WHERE property_status = 'available'", (err, rows) => {
+        !err? res.send(rows) : console.log(err);
+    })
+    
+})
+
 Router.get("/api/search-property", (req, res) => {
     const pSize = req.query.property_size;
     const pType = req.query.property_type;
