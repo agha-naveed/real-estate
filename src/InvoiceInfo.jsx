@@ -12,7 +12,7 @@ export default function InvoiceInfo() {
   useInsertionEffect(() => {
     const propertyData = async () => {
       try {
-        const response = await axios.get("http://localhost:7000/api/receipt-voucher-details");
+        const response = await axios.get("http://localhost:7000/api/invoice-details");
         setUserData(response.data);
       } catch (err) {
         console.log(err);
@@ -39,13 +39,14 @@ export default function InvoiceInfo() {
         <table className='property-table'>
           <thead className='font-semibold'>
             <tr>
-              <th>RV ID</th>
               <th>Invoice ID</th>
-              <th>Buyer Name</th>
-              <th>Seller Name</th>
-              <th>Recieved Amount</th>
-              <th>Remaining Amount</th>
+              <th>Property ID</th>
+              <th>Buyer ID</th>
+              <th>Seller ID</th>
               <th>Date</th>
+              <th>Receivable Amount</th>
+              <th>Payable Amount</th>
+              <th>Commission Amount</th>
             </tr>
           </thead>
           <tbody>
@@ -53,13 +54,14 @@ export default function InvoiceInfo() {
               userData.map((u_data, i) => {
                 return (
                   <tr className='hover:!bg-purple-100' key={`seller_index_${i}`}>
-                    <td>{u_data.rv_id}</td>
-                    <td>{u_data.inv_id}</td>
-                    <td>{u_data.buyer_name}</td>
-                    <td>{u_data.seller_name}</td>
-                    <td>{u_data.received_amount}</td>
-                    <td>{u_data.remaining_amount}</td>
-                    <td>{u_data.entry_date}</td>
+                    <td>{u_data.invoice_id}</td>
+                    <td>{u_data.property_id}</td>
+                    <td>{u_data.buyer_id}</td>
+                    <td>{u_data.seller_id}</td>
+                    <td>{u_data.invoice_date}</td>
+                    <td>{u_data.invoice_recievable_amount}</td>
+                    <td>{u_data.invoice_payable_amount}</td>
+                    <td>{u_data.commission_amount}</td>
                   </tr>
                   )
 

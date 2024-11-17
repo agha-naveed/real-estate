@@ -5,13 +5,13 @@ import axios from 'axios';
 
 export default function AllReceiptVoucher() {
 
+  const [userData, setUserData] = useState([]);
+
   useInsertionEffect(() => {
-    
-    const [userData, setUserData] = useState([]);
-    
+
     const rvDetail = async () => {
       try {
-        const response = await axios.get("http://localhost:7000/api/invoice-details");
+        const response = await axios.get("http://localhost:7000/api/receipt-voucher-details");
         setUserData(response.data);
       } catch (err) {
         console.log(err);
@@ -33,33 +33,32 @@ export default function AllReceiptVoucher() {
         <table className='property-table'>
           <thead className='font-semibold'>
             <tr>
-              <th>Receipt Voucher ID</th>
+              <th>RV ID</th>
               <th>Invoice ID</th>
-              <th>Amount</th>
+              <th>Buyer Name</th>
+              <th>Seller Name</th>
+              <th>Recieved Amount</th>
               <th>Remaining Amount</th>
               <th>Date</th>
             </tr>
           </thead>
           <tbody>
-            
-            {/* {
+            {
               userData.map((u_data, i) => {
                 return (
                   <tr className='hover:!bg-purple-100' key={`seller_index_${i}`}>
-                    <td>{u_data.invoice_id}</td>
-                    <td>{u_data.property_id}</td>
-                    <td>{u_data.buyer_id}</td>
-                    <td>{u_data.seller_id}</td>
-                    <td>{u_data.invoice_date}</td>
-                    <td>{u_data.invoice_recievable_amount}</td>
-                    <td>{u_data.invoice_payable_amount}</td>
-                    <td>{u_data.commission_amount}</td>
+                    <td>{u_data.rv_id}</td>
+                    <td>{u_data.inv_id}</td>
+                    <td>{u_data.buyer_name}</td>
+                    <td>{u_data.seller_name}</td>
+                    <td>{u_data.received_amount}</td>
+                    <td>{u_data.remaining_amount}</td>
+                    <td>{u_data.entry_date}</td>
                   </tr>
                   )
 
               })
-            } */}
-
+            }
           </tbody>
         </table>
       </div>

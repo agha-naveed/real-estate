@@ -373,7 +373,8 @@ Router.post("/api/create-new-receipt-voucher", (req, res) => {
 
     sqlDBConnect.query(sql, (err, result) => !err ? res.status(200).json("New Property has been Inserted") 
     : console.log(err) );
-})
+});
+
 
 Router.get("/api/receipt-voucher-details", (req, res) => {
     
