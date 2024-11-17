@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 
 export default function Navbar() {
     return (
-        <nav className='navbar w-[80px] md:min-w-[300px] min-h-screen py-5 bg-primary-clr'>
+        <nav className='navbar w-[80px] md:min-w-[300px] min-h-screen h-full py-5 bg-primary-clr'>
 
             <div className='justify-self-center'>
                 <Link to='/' className='md:py-[14px] md:px-[40px] p-2 md:justify-start justify-center'><img src={logo} alt="Logo" className='md:w-[100px] w-[50px]' /></Link>
