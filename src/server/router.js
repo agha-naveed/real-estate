@@ -370,12 +370,8 @@ Router.post("/api/create-new-receipt-voucher", (req, res) => {
     let invId = req.body.invoice_id;
     let receivedAmount = req.body.received_amount;
     let remainingAmount = req.body.remaining_amount;
-
-
-
-
      
-    let sql = `INSERT INTO invoice(property_id, buyer_id, seller_id, invoice_date, invoice_recievable_amount, invoice_payable_amount, commission_amount) VALUES ("${propertyId}", "${buyerId}", "${sellerId}", "${(new Date()).toLocaleDateString('en-CA')}", "${inRecvAmount}", "${inPayAmount}", "${inCommission}"); UPDATE property SET property_status = "sold" WHERE property_id = ${propertyId}`;
+    let sql = `INSERT INTO receipt_voucher(inv_id, received_amount, remaining_amount, entry_date) VALUES ("${invId}", "${receivedAmount}", "${remainingAmount}", "${(new Date()).toLocaleDateString('en-CA')}";`;
 
     sqlDBConnect.query(sql, (err, result) => !err ? res.status(200).json("New Property has been Inserted") 
     : console.log(err) );
