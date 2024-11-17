@@ -390,9 +390,47 @@ Router.get("/api/receipt-voucher-details", (req, res) => {
     
 });
 
-
-
 // ==============   === Receipt Voucher Here ===   ================
+
+// ----------------------------------------------------------------
+
+// ==============   === Payment Voucher Here ===   ================
+
+
+
+Router.get("/api/create-new-payment-voucher", (req, res) => {
+    sqlDBConnect.query("select * from payment_voucher", (err, rows) => {
+        !err? res.send(rows) : console.log(err);
+    })
+})
+
+Router.post("/api/create-new-payment-voucher", (req, res) => {
+    let invId = req.body.invoice_id;
+    let paidAmount = req.body.paid_amount;
+    let remainingAmount = req.body.remaining_amount;
+     
+    let sql = `INSERT INTO payment_voucher(inv_id, paid_amount, remaining_amount, entry_date) VALUES ("${invId}", "${paidAmount}", "${remainingAmount}", "${(new Date()).toLocaleDateString('en-CA')}") ; UPDATE invoice SET invoice_payable_amount = ${remainingAmount} WHERE invoice_id = ${invId}`;
+
+    sqlDBConnect.query(sql, (err, result) => !err ? res.status(200).json("New Property has been Inserted") 
+    : console.log(err) );
+});
+
+
+Router.get("/api/payment-voucher-details", (req, res) => {
+    
+    let sql = `SELECT p.*, s.seller_name, b.buyer_name FROM payment_voucher as p INNER JOIN invoice as i ON p.inv_id = i.invoice_id INNER JOIN seller as s ON i.seller_id = s.seller_id INNER JOIN buyer as b ON i.buyer_id = b.buyer_id`;
+
+    sqlDBConnect.query(sql, (err, rows) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send({ error: 'Database query failed' });
+        }
+        res.send(rows);
+    });
+    
+});
+
+// ==============   === Payment Voucher Here ===   ================
 
 
 

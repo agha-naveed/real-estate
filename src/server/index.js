@@ -35,6 +35,14 @@ app.use("/api/invoice-details", RouterPath);
 app.use("/api/create-new-receipt-voucher", RouterPath);
 app.use("/api/receipt-voucher-details", RouterPath);
 
+// Receipt Voucher
+app.use("/api/create-new-receipt-voucher", RouterPath);
+app.use("/api/receipt-voucher-details", RouterPath);
+
+// Payment Voucher
+app.use("/api/create-new-payment-voucher", RouterPath);
+app.use("/api/payment-voucher-details", RouterPath);
+
 
 
 
