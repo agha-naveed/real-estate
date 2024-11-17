@@ -362,24 +362,22 @@ Router.get("/api/create-new-receipt-voucher", (req, res) => {
     sqlDBConnect.query("select * from receipt_voucher", (err, rows) => {
         !err? res.send(rows) : console.log(err);
     })
-    
 })
-
 
 Router.post("/api/create-new-receipt-voucher", (req, res) => {
     let invId = req.body.invoice_id;
     let receivedAmount = req.body.received_amount;
     let remainingAmount = req.body.remaining_amount;
      
-    let sql = `INSERT INTO receipt_voucher(inv_id, received_amount, remaining_amount, entry_date) VALUES ("${invId}", "${receivedAmount}", "${remainingAmount}", "${(new Date()).toLocaleDateString('en-CA')}";`;
+    let sql = `INSERT INTO receipt_voucher(inv_id, received_amount, remaining_amount, entry_date) VALUES ("${invId}", "${receivedAmount}", "${remainingAmount}", "${(new Date()).toLocaleDateString('en-CA')}") ; UPDATE invoice SET invoice_recievable_amount = ${remainingAmount} WHERE invoice_id = ${invId}`;
 
     sqlDBConnect.query(sql, (err, result) => !err ? res.status(200).json("New Property has been Inserted") 
     : console.log(err) );
 })
 
-Router.get("/api/invoice-details", (req, res) => {
+Router.get("/api/receipt-voucher-details", (req, res) => {
     
-    let sql = `SELECT inv.*, p.seller_id FROM invoice AS inv INNER JOIN property AS p ON inv.property_id = p.property_id`;
+    let sql = `SELECT v.*, s.seller_name, b.buyer_name FROM receipt_voucher as v INNER JOIN invoice as i ON v.inv_id = i.invoice_id INNER JOIN seller as s ON i.seller_id = s.seller_id INNER JOIN buyer as b ON i.buyer_id = b.buyer_id`;
 
     sqlDBConnect.query(sql, (err, rows) => {
         if (err) {

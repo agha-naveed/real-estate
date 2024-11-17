@@ -4,6 +4,22 @@ import { FiPlus } from "react-icons/fi";
 import axios from 'axios';
 
 export default function AllReceiptVoucher() {
+
+  useInsertionEffect(() => {
+    
+    const [userData, setUserData] = useState([]);
+    
+    const rvDetail = async () => {
+      try {
+        const response = await axios.get("http://localhost:7000/api/invoice-details");
+        setUserData(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    rvDetail();
+  }, []);
+
   return (
     <div className='w-full h-full'>
       <div className="add-btn w-full p-5 flex justify-end">
