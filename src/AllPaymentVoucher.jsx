@@ -21,7 +21,7 @@ export default function AllPaymentVoucher() {
   }, []);
 
   return (
-    <div className='w-full h-full'>
+    <div className='w-full h-auto'>
       <div className="add-btn w-full p-5 flex justify-end">
         <Link to='new-payment-voucher' className='flex bg-primary-clr w-fit py-[6px] px-[24px] text-white rounded-[22px] gap-[6px] items-center transition-all hover:bg-dark-primary-clr'>
             <FiPlus className='text-[30px]' />

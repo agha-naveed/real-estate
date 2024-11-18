@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom'
 
 export default function paymentVoucher() {
   return (
-    <div className="w-full">
+    <div className="w-full overflow-hidden">
       <HeaderDiv value='Payment Voucher' />
       <Outlet />
     </div>
