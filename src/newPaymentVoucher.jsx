@@ -65,7 +65,7 @@ export default function NewPaymentVoucher() {
     const num = +e.target.value;
     const remaining = payableAmount - num;
     setRemainingAmount(remaining);
-    setValue('remaining_amount', remaining); // Use setValue to update remaining_amount in react-hook-form
+    setValue('remaining_amount', remaining);
   };
 
   return (
