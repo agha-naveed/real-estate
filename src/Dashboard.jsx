@@ -8,11 +8,22 @@ import axios from 'axios';
 export default function Dashboard() {
 
   const [buyer, setBuyer] = useState('')
+  const [seller, setSeller] = useState('')
+  const [property, setProperty] = useState('')
+  const [invoice, setInvoice] = useState('')
 
   useInsertionEffect(() => {
-    let buyerDetails = async () => {
-      let resp = await axios.get("")
+    let datas = async () => {
+      let pResp = await axios.get("http://localhost:7000/api/whole-properties")
+      let sResp = await axios.get("http://localhost:7000/api/sellers")
+      let bResp = await axios.get("http://localhost:7000/api/buyers")
+      let iResp = await axios.get("http://localhost:7000/api/invoices")
+      setBuyer(bResp.data)
+      setSeller(sResp.data)
+      setProperty(pResp.data)
+      setInvoice(iResp.data)
     }
+    datas()
   }, [])
 
   return (
@@ -23,7 +34,7 @@ export default function Dashboard() {
         <div className="card flex bg-red-600 items-center justify-between w-[220px] h-[90px] py-2 px-6">
           <div className="grid text-white">
             <span>Total Properties</span>
-            <span className='text-center text-2xl'>1</span>
+            <span className='text-center text-2xl'>{property.length}</span>
           </div>
           <PiHouseLine className='text-[40px] text-white' />
         </div>
@@ -31,7 +42,7 @@ export default function Dashboard() {
         <div className="card flex bg-blue-700 items-center justify-between w-[220px] h-[90px] py-2 px-6">
           <div className="grid text-white">
             <span>Total Buyers</span>
-            <span className='text-center text-2xl'>1</span>
+            <span className='text-center text-2xl'>{buyer.length}</span>
           </div>
           <IoMdPeople className='text-[40px] text-white' />
         </div>
@@ -39,7 +50,7 @@ export default function Dashboard() {
         <div className="card flex bg-orange-600 items-center justify-between w-[220px] h-[90px] py-2 px-6">
           <div className="grid text-white">
             <span>Total Sellers</span>
-            <span className='text-center text-2xl'>1</span>
+            <span className='text-center text-2xl'>{seller.length}</span>
           </div>
           <IoMdPeople className='text-[40px] text-white' />
         </div>
@@ -47,7 +58,7 @@ export default function Dashboard() {
         <div className="card flex bg-green-700 items-center justify-between w-[220px] h-[90px] py-2 px-6">
           <div className="grid text-white">
             <span>Total Invoice</span>
-            <span className='text-center text-2xl'>1</span>
+            <span className='text-center text-2xl'>{invoice.length}</span>
           </div>
           <TbFileInvoice className='text-[40px] text-white' />
         </div>

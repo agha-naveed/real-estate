@@ -34,7 +34,11 @@ Router.get("/api/properties", (req, res) => {
     sqlDBConnect.query("SELECT property_id FROM property WHERE property_status = 'available'", (err, rows) => {
         !err? res.send(rows) : console.log(err);
     })
-    
+})
+Router.get("/api/whole-properties", (req, res) => {
+    sqlDBConnect.query("SELECT property_id FROM property", (err, rows) => {
+        !err? res.send(rows) : console.log(err);
+    })
 })
 
 Router.get("/api/search-property", (req, res) => {
@@ -288,8 +292,13 @@ Router.get("/api/buyer-details/:buyer_id", (req, res) => {
 Router.get("/api/create-new-invoice", (req, res) => {
     sqlDBConnect.query("select * from invoice", (err, rows) => {
         !err? res.send(rows) : console.log(err);
-    })
-    
+    })  
+})
+
+Router.get("/api/invoices", (req, res) => {
+    sqlDBConnect.query("select invoice_id from invoice", (err, rows) => {
+        !err? res.send(rows) : console.log(err);
+    })  
 })
 
 
@@ -300,9 +309,6 @@ Router.post("/api/create-new-invoice", (req, res) => {
     let inRecvAmount = req.body.invoice_recievable_amount;
     let inPayAmount = req.body.invoice_payable_amount;
     let inCommission = req.body.commission_amount
-
-
-
      
     let sql = `INSERT INTO invoice(property_id, buyer_id, seller_id, invoice_date, invoice_recievable_amount, invoice_payable_amount, commission_amount) VALUES ("${propertyId}", "${buyerId}", "${sellerId}", "${(new Date()).toLocaleDateString('en-CA')}", "${inRecvAmount}", "${inPayAmount}", "${inCommission}"); UPDATE property SET property_status = "sold" WHERE property_id = ${propertyId}`;
 

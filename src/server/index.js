@@ -13,6 +13,7 @@ app.use("/api/user", RouterPath);
 
 // Property
 app.use("/api/properties", RouterPath);
+app.use("/api/whole-properties", RouterPath);
 app.use("/api/add-property", RouterPath);
 app.use("/api/property-details", RouterPath);
 app.use("/api/search-property", RouterPath);
