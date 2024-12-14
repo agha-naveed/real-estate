@@ -1,6 +1,8 @@
 import React, { useInsertionEffect, useState } from 'react'
 import HeaderDiv from './HeaderDiv'
 import { PiHouseLine } from "react-icons/pi";
+import { IoMdPeople } from "react-icons/io";
+import { TbFileInvoice } from "react-icons/tb";
 import axios from 'axios';
 
 export default function Dashboard() {
@@ -31,7 +33,7 @@ export default function Dashboard() {
             <span>Total Buyers</span>
             <span className='text-center text-2xl'>1</span>
           </div>
-          <PiHouseLine className='text-[40px] text-white' />
+          <IoMdPeople className='text-[40px] text-white' />
         </div>
 
         <div className="card flex bg-orange-600 items-center justify-between w-[220px] h-[90px] py-2 px-6">
@@ -39,7 +41,15 @@ export default function Dashboard() {
             <span>Total Sellers</span>
             <span className='text-center text-2xl'>1</span>
           </div>
-          <PiHouseLine className='text-[40px] text-white' />
+          <IoMdPeople className='text-[40px] text-white' />
+        </div>
+
+        <div className="card flex bg-green-700 items-center justify-between w-[220px] h-[90px] py-2 px-6">
+          <div className="grid text-white">
+            <span>Total Invoice</span>
+            <span className='text-center text-2xl'>1</span>
+          </div>
+          <TbFileInvoice className='text-[40px] text-white' />
         </div>
       </div>
 
