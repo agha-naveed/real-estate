@@ -1,4 +1,3 @@
-import React from 'react'
 import HeaderDiv from './HeaderDiv'
 import { Outlet } from 'react-router-dom'
 
