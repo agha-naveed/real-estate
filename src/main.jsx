@@ -23,7 +23,7 @@ import ReceiptVoucher from './ReceiptVoucher.jsx'
 import PaymentVoucher from './PaymentVoucher.jsx'
 import AllRV from './AllReceiptVoucher.jsx'
 import AllPV from './AllPaymentVoucher.jsx';
-import NewReceiptVoucher from './newReceiptVoucher.jsx'
+import NewReceiptVoucher from './NewReceiptVoucher.jsx'
 import NewPV from './NewPaymentVoucher.jsx';
 
 const router = createBrowserRouter([
