@@ -21,10 +21,10 @@ import axios from 'axios'
 import Search from './Search.jsx'
 import VoucherOfReceipt from './VoucherOfReceipt.jsx'
 import VoucherOfPayment from './VoucherOfPayment.jsx'
-import AllRV from './AllReceiptVoucher.jsx'
-import AllPV from './AllPaymentVoucher.jsx';
-import NewReceiptVoucher from './NewReceiptVoucher.jsx'
-import NewPV from './NewPaymentVoucher.jsx';
+import WholeReceiptVoucher from './WholeReceiptVoucher.jsx'
+import WholePaymentVoucher from './WholePaymentVoucher.jsx';
+import CreateReceiptVoucher from './CreateReceiptVoucher.jsx'
+import CreatePaymentVoucher from './CreatePaymentVoucher.jsx';
 
 const router = createBrowserRouter([
   {
@@ -108,11 +108,11 @@ const router = createBrowserRouter([
         element: <VoucherOfReceipt />,
         children: [{
           index: true,
-          element: <AllRV/>
+          element: <WholeReceiptVoucher/>
         }, 
         {
           path: 'new-receipt-voucher',
-          element: <NewReceiptVoucher />
+          element: <CreateReceiptVoucher />
         }]
       },
       {
@@ -120,11 +120,11 @@ const router = createBrowserRouter([
         element: <VoucherOfPayment />,
         children: [{
           index: true,
-          element: <AllPV />
+          element: <WholePaymentVoucher />
         }, 
         {
           path: 'new-payment-voucher',
-          element: <NewPV/>
+          element: <CreatePaymentVoucher/>
         }]
       }
     ]

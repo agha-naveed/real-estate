@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Form, useNavigate } from 'react-router-dom';
 
 
-export default function NewPaymentVoucher() {
+export default function CreatePaymentVoucher() {
   const [message, setMessage] = useState('');
   const { register, handleSubmit, setValue } = useForm(); // Use setValue from react-hook-form
 

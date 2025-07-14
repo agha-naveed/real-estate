@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { FiPlus } from "react-icons/fi";
 import axios from 'axios';
 
-export default function AllReceiptVoucher() {
+export default function WholeReceiptVoucher() {
 
   const [userData, setUserData] = useState([]);
 
