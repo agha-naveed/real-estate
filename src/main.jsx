@@ -19,7 +19,7 @@ import NewInvoice from './NewInvoice.jsx'
 import PropertyFullDetail from './PropertyFullDetail.jsx'
 import axios from 'axios'
 import Search from './Search.jsx'
-import ReceiptVoucher from './ReceiptVoucher.jsx'
+import VoucherOfReceipt from './VoucherOfReceipt.jsx'
 import PaymentVoucher from './PaymentVoucher.jsx'
 import AllRV from './AllReceiptVoucher.jsx'
 import AllPV from './AllPaymentVoucher.jsx';
@@ -105,7 +105,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'receipt-voucher',
-        element: <ReceiptVoucher />,
+        element: <VoucherOfReceipt />,
         children: [{
           index: true,
           element: <AllRV/>
