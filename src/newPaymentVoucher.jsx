@@ -89,7 +89,7 @@ export default function NewPaymentVoucher() {
             <input type="number" readOnly value={payableAmount} />
           </div>
         </div>
-
+        
         <div className="flex gap-5">
           <div>
             <label htmlFor="">Paid Amount</label>

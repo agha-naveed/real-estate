@@ -30,35 +30,35 @@ export default function Dashboard() {
     <div className='w-full h-full'>
       <HeaderDiv value='Dashboard' />
       
-      <div className="flex gap-6 p-5">
-        <div className="card flex bg-red-600 items-center justify-between w-[220px] h-[90px] py-2 px-6">
+      <div className="flex gap-6 p-5 flex-wrap">
+        <div className="card flex bg-red-600 items-center justify-between w-[220px] h-[95px] py-2 px-6">
           <div className="grid text-white">
             <span>Total Properties</span>
-            <span className='text-center text-2xl'>{property.length}</span>
+            <span className='text-center text-[27px]'>{property.length}</span>
           </div>
           <PiHouseLine className='text-[40px] text-white' />
         </div>
 
-        <div className="card flex bg-blue-700 items-center justify-between w-[220px] h-[90px] py-2 px-6">
+        <div className="card flex bg-blue-700 items-center justify-between w-[220px] h-[95px] py-2 px-6">
           <div className="grid text-white">
             <span>Total Buyers</span>
-            <span className='text-center text-2xl'>{buyer.length}</span>
+            <span className='text-center text-[27px]'>{buyer.length}</span>
           </div>
           <IoMdPeople className='text-[40px] text-white' />
         </div>
 
-        <div className="card flex bg-orange-600 items-center justify-between w-[220px] h-[90px] py-2 px-6">
+        <div className="card flex bg-orange-600 items-center justify-between w-[220px] h-[95px] py-2 px-6">
           <div className="grid text-white">
             <span>Total Sellers</span>
-            <span className='text-center text-2xl'>{seller.length}</span>
+            <span className='text-center text-[27px]'>{seller.length}</span>
           </div>
           <IoMdPeople className='text-[40px] text-white' />
         </div>
 
-        <div className="card flex bg-green-700 items-center justify-between w-[220px] h-[90px] py-2 px-6">
+        <div className="card flex bg-green-700 items-center justify-between w-[220px] h-[95px] py-2 px-6">
           <div className="grid text-white">
             <span>Total Invoice</span>
-            <span className='text-center text-2xl'>{invoice.length}</span>
+            <span className='text-center text-[27px]'>{invoice.length}</span>
           </div>
           <TbFileInvoice className='text-[40px] text-white' />
         </div>
